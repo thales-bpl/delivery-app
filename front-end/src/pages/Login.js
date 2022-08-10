@@ -45,7 +45,7 @@ export default function Login() {
         type="submit"
         data-testid="common_login__button-login"
         disabled={ isDisabled }
-        onClick={() => console.log('logou')}
+        onClick={ () => console.log('logou') }
       >
         Login
       </button>
