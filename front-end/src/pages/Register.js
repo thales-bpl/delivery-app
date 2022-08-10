@@ -5,7 +5,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setisDisabled] = useState(true);
-  const [user, setUser] = useState(false);
+  // const [user, setUser] = useState(false);
+  const user = false;
 
   const handleName = ({ target: { value } }) => {
     setName(value);
@@ -56,7 +57,7 @@ export default function Register() {
         type="button"
         data-testid="common_register__button-register"
         disabled={ isDisabled }
-        onClick={ () => console.log("criou") }
+        onClick={ () => console.log('criou') }
       >
         CADASTRAR
       </button>
