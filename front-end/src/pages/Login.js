@@ -23,6 +23,8 @@ export default function Login() {
     const testEmail = /^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i;
     if (testEmail.test(email) && password.length >= minPassSize) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [email, password]);
 
