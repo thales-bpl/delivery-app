@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import rockGlass from '../images/rockGlass';
+import { rockGlass } from '../images/rockGlass.svg';
 
 export default function Login() {
   const [email, setEmail] = useState('');
