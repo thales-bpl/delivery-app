@@ -6,7 +6,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isFailed, setIsFailed] = useState(false);
+  // const [isFailed, setIsFailed] = useState(false);
+  const isFailed = false;
 
   const handleEmail = ({ target: { value } }) => {
     setEmail(value);
@@ -44,7 +45,7 @@ export default function Login() {
         type="submit"
         data-testid="common_login__button-login"
         disabled={ isDisabled }
-        onClick={  () => console.log("logou") }
+        onClick={() => console.log('logou')}
       >
         Login
       </button>
