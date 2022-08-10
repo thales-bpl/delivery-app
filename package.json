@@ -57,5 +57,10 @@
       "__TESTDESC__": true,
       "__TESTFILE__": true
     }
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0"
   }
 }

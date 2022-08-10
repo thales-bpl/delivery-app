@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import rockGlass from '../images/rockGlass.svg';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [isDisabled, setIsDisabled] = useState(true);
-  const [isFailed, setIsFailed] = useState(false);
+  // const [isFailed, setIsFailed] = useState(false);
+  const isFailed = false;
 
   const handleEmail = ({ target: { value } }) => {
     setEmail(value);
@@ -21,11 +23,21 @@ export default function Login() {
     const testEmail = /^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i;
     if (testEmail.test(email) && password.length >= minPassSize) {
       setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [email, password]);
 
   return (
     <div className="login">
+      <object
+        className="logo"
+        type="image/svg+xml"
+        data={ rockGlass }
+        alt="logo"
+      >
+        Delivery 23
+      </object>
       <input
         type="email"
         name="email"
@@ -44,7 +56,7 @@ export default function Login() {
         type="submit"
         data-testid="common_login__button-login"
         disabled={ isDisabled }
-        onClick={  () => console.log("logou") }
+        onClick={ () => console.log('logou') }
       >
         Login
       </button>
