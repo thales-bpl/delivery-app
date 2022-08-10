@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 export default function Router() {
   return (
