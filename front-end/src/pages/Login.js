@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import rockGlass from '../images/rockGlass';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -27,6 +28,14 @@ export default function Login() {
 
   return (
     <div className="login">
+      <object
+        className="logo"
+        type="image/svg+xml"
+        data={ rockGlass }
+        alt="logo"
+      >
+        Delivery 23
+      </object>
       <input
         type="email"
         name="email"
