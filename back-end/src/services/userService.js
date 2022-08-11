@@ -1,14 +1,14 @@
 const { User } = require('../database/models');
 const { NOT_FOUND } = require('../error/errorCatalog');
+const { encrypt } = require('../utils/md5');
 
-const postLogin = async (email) => {
-  console.log('login service - ', email)
-  const login = await User.findAll({ where: { email } });
-  console.log('apos a consulta na model - ',login);
-  if (!login) throw NOT_FOUND;
+const postLogin = async (email, password) => {
+  const [user] = await User.findAll({ where: { email } });
+  const encryptedPass = encrypt(password);
+  if (!user || user.password !== encryptedPass) throw NOT_FOUND;
+  const { password: passDB, ...userWithoutPass } = user.dataValues;
 
-  // TO-DO: implementar return
-  return { message: "logado" };
+  return userWithoutPass;
 };
 
 module.exports = {
