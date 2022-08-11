@@ -1,7 +1,7 @@
 const ErrorFactory = require('./errorFactory');
 
 const errorHandler = (err, _req, res, _next) => {
-  console.log(err.status || 500);
+  console.log(err.message);
   
   if (err instanceof ErrorFactory) return res.status(err.status).json({ message: err.message });
   return res.status(500).json({ message: 'Internal Server Error' });
