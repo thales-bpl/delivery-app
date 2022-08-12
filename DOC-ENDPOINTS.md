@@ -113,7 +113,7 @@
 
 <details>
   <summary>
-    <b><strong>GETALL</strong></b>
+    <b><strong>GET ALL</strong></b>
   </summary>
   GET(http://localhost:3001/products)
 
@@ -143,6 +143,35 @@
 
   </details>
 </details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>GET BY ID</strong></b>
+  </summary>
+  GET(http://localhost:3001/products/:id)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 4,
+        "name": "Brahma 600ml",
+        "price": "7.50",
+        "url_image": "http://localhost:3001/images/brahma_600ml.jpg"
+      }
+    ]
+
+  </details>
+</details>
+
+---
 
 ## SALES
 
