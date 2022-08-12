@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import fetchToken from '../api/fetchToken';
+import fetchTokenRegister from '../api/fetchTokenRegister';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -29,7 +29,7 @@ export default function Register() {
       setUserExists,
       navigate,
     };
-    fetchToken(params);
+    fetchTokenRegister(params);
   };
 
   useEffect(() => {
