@@ -6,8 +6,6 @@ import rockGlass from '../images/rockGlass.svg';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState({});
-  console.log(user);
 
   const navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true);
@@ -35,7 +33,6 @@ export default function Login() {
     const params = {
       endpoint: '/login',
       body: { email, password },
-      setUser,
       setIsFailed,
       navigate,
     };

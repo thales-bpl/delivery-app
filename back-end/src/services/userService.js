@@ -21,10 +21,11 @@ const registerLogin = async (name, email, password) => {
   const encryptedPass = encrypt(password);
   const newuser = await user.create({ name, email, password: encryptedPass, role: 'customer' });
 
-  const { password: passDB, ...userWithoutPass } = newuser.dataValues;
-  const token = generateJWT(userWithoutPass);
+  // const { password: passDB, id, ...userWithoutPass } = newuser.dataValues;
+  const { role, id, ...userWithouRole} = newuser.dataValues;
+  // const token = generateJWT(userWithoutPass);
 
-  return { ...userWithoutPass, token };
+  return { ...userWithouRole/* , token */ };
 };
 
 module.exports = {

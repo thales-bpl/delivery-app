@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import fetchToken from '../api/fetchToken';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [user, setUser] = useState(false);
-  const user = false;
+  const [userExists, setUserExists] = useState(false);
+  const navigate = useNavigate();
 
   const handleName = ({ target: { value } }) => {
     setName(value);
@@ -20,13 +22,23 @@ export default function Register() {
     setPassword(value);
   };
 
+  const onClick = () => {
+    const params = {
+      endpoint: '/login/register',
+      body: { name, email, password },
+      setUserExists,
+      navigate,
+    };
+    fetchToken(params);
+  };
+
   useEffect(() => {
     const minPassSize = 6;
-    const maxNameSize = 12;
+    const minNameSize = 12;
     const testEmail = /^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i;
     if (testEmail.test(email)
       && password.length >= minPassSize
-      && name.length <= maxNameSize) {
+      && name.length >= minNameSize) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -61,11 +73,11 @@ export default function Register() {
         type="button"
         data-testid="common_register__button-register"
         disabled={ isDisabled }
-        onClick={ () => console.log('criou') }
+        onClick={ () => onClick() }
       >
         CADASTRAR
       </button>
-      {user && (
+      {userExists && (
         <span
           data-testid="common_register__element-invalid_register"
         >

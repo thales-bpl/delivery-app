@@ -7,17 +7,17 @@ const api = axios.create({
 });
 
 const fetchToken = async (dataTest) => {
-  const { endpoint, body, setUser, setIsFailed, navigate } = dataTest;
+  const { endpoint, body, setIsFailed, navigate, setUserExists } = dataTest;
   await api.post(endpoint, body)
     .then(({ data }) => {
-      console.log(data);
-      setUser(data);
       setIsFailed(false);
       localStorage.setItem('user', JSON.stringify(data.token));
+      setUserExists(false);
       navigate('/customer/products');
     })
     .catch(() => {
       setIsFailed(true);
+      setUserExists(true);
     });
   return data;
 };
