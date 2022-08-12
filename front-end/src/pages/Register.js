@@ -4,7 +4,7 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isDisabled, setisDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
   // const [user, setUser] = useState(false);
   const user = false;
 
@@ -21,11 +21,15 @@ export default function Register() {
   };
 
   useEffect(() => {
-    const minSize = 6;
-    const maxSize = 12;
+    const minPassSize = 6;
+    const maxNameSize = 12;
     const testEmail = /^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i;
-    if (testEmail.test(email) && password.length >= minSize && name.length >= maxSize) {
-      setisDisabled(false);
+    if (testEmail.test(email)
+      && password.length >= minPassSize
+      && name.length > maxNameSize) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [email, password, name]);
 
