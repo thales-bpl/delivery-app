@@ -22,7 +22,7 @@ const registerLogin = async (name, email, password) => {
   const newuser = await user.create({ name, email, password: encryptedPass, role: 'customer' });
 
   // const { password: passDB, id, ...userWithoutPass } = newuser.dataValues;
-  const { role, id, ...userWithouRole} = newuser.dataValues;
+  const { role, id, ...userWithouRole } = newuser.dataValues;
   // const token = generateJWT(userWithoutPass);
 
   return { ...userWithouRole/* , token */ };
