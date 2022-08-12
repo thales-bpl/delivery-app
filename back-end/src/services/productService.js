@@ -7,10 +7,10 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const productById = await Product.findAll({ where: { id } });
-  return productById
+  return productById;
 }
 
 module.exports = {
   getAll,
   getById,
-}
+};
