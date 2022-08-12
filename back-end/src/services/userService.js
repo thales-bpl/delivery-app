@@ -1,30 +1,31 @@
-const { User } = require('../database/models');
+const { user } = require('../database/models');
 const { NOT_FOUND, CONFLICT } = require('../error/errorCatalog');
 const { encrypt } = require('../utils/md5');
 const { generateJWT } = require('../utils/jwt');
 
 const verifyLogin = async (email, password) => {
-  const [user] = await User.findAll({ where: { email } });
+  const [User] = await user.findAll({ where: { email } });
   const encryptedPass = encrypt(password);
-  if (!user || user.password !== encryptedPass) throw NOT_FOUND;
+  if (!User || User.password !== encryptedPass) throw NOT_FOUND;
 
-  const { password: passDB, ...userWithoutPass } = user.dataValues;
+  const { password: passDB, ...userWithoutPass } = User.dataValues;
   const token = generateJWT(userWithoutPass);
 
   return { ...userWithoutPass, token };
 };
 
 const registerLogin = async (name, email, password) => {
-  const [user] = await User.findAll({ where: { email } });
-  if (user) throw CONFLICT;
+  const [User] = await user.findAll({ where: { email } });
+  if (User) throw CONFLICT;
 
   const encryptedPass = encrypt(password);
-  const newUser = await User.create({ name, email, password: encryptedPass, role: 'customer' });
+  const newuser = await user.create({ name, email, password: encryptedPass, role: 'customer' });
 
-  const { password: passDB, ...userWithoutPass } = newUser.dataValues;
-  const token = generateJWT(userWithoutPass);
+  // const { password: passDB, id, ...userWithoutPass } = newuser.dataValues;
+  const { role, id, ...userWithouRole } = newuser.dataValues;
+  // const token = generateJWT(userWithoutPass);
 
-  return { ...userWithoutPass, token };
+  return { ...userWithouRole/* , token */ };
 };
 
 module.exports = {
