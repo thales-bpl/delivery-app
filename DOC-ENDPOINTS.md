@@ -111,6 +111,68 @@
 
 ## PRODUCTS
 
+<details>
+  <summary>
+    <b><strong>GET ALL</strong></b>
+  </summary>
+  GET(http://localhost:3001/products)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 1,
+        "name": "Skol Lata 250ml",
+        "price": "2.20",
+        "url_image": "http://localhost:3001/images/skol_lata_350ml.jpg"
+      },
+      (...)
+      ,
+      {
+        "id": 11,
+        "name": "Stella Artois 275ml",
+        "price": "3.49",
+        "url_image": "http://localhost:3001/images/stella_artois_275ml.jpg"
+      }
+    ]
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>GET BY ID</strong></b>
+  </summary>
+  GET(http://localhost:3001/products/:id)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 4,
+        "name": "Brahma 600ml",
+        "price": "7.50",
+        "url_image": "http://localhost:3001/images/brahma_600ml.jpg"
+      }
+    ]
+
+  </details>
+</details>
+
+---
+
 ## SALES
 
 ## SALESPRODUCTS
