@@ -26,7 +26,7 @@ export default function Register() {
     const testEmail = /^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i;
     if (testEmail.test(email)
       && password.length >= minPassSize
-      && name.length > maxNameSize) {
+      && name.length <= maxNameSize) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);

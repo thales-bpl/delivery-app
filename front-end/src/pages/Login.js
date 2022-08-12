@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import fetchToken from '../api/fetchToken';
 import rockGlass from '../images/rockGlass.svg';
 
@@ -9,6 +9,7 @@ export default function Login() {
   const [user, setUser] = useState({});
   console.log(user);
 
+  const navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true);
   const [isFailed, setIsFailed] = useState(false);
 
@@ -31,7 +32,14 @@ export default function Login() {
   }, [email, password]);
 
   const onClick = () => {
-    fetchToken('/login', { email, password }, setUser, setIsFailed);
+    const params = {
+      endpoint: '/login',
+      body: { email, password },
+      setUser,
+      setIsFailed,
+      navigate,
+    };
+    fetchToken(params);
   };
 
   return (
