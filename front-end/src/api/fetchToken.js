@@ -12,20 +12,17 @@ const fetchToken = async (dataTest) => {
     body,
     setIsFailed,
     navigate,
-    setUserExists } = dataTest;
+  } = dataTest;
 
   await api.post(endpoint, body)
     .then(({ data }) => {
       setIsFailed(false);
       localStorage.setItem('user', JSON.stringify(data.token));
-      setUserExists(false);
       navigate('/customer/products');
     })
     .catch(() => {
       setIsFailed(true);
-      setUserExists(true);
     });
-  return data;
 };
 
 export default fetchToken;
