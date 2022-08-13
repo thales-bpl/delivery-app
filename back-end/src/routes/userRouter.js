@@ -5,6 +5,7 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 router
+  .get('/', rescue(userController.getAll))
   .post('/', rescue(userController.verifyLogin))
   .post('/register', rescue(userController.registerLogin));
 
