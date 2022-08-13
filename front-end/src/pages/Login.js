@@ -35,7 +35,6 @@ export default function Login() {
       body: { email, password },
       setIsFailed,
       navigate,
-      setUserExists,
     };
     fetchToken(params);
   };
