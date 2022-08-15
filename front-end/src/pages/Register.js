@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import fetchTokenRegister from '../api/fetchTokenRegister';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isDisabled, setisDisabled] = useState(true);
-  // const [user, setUser] = useState(false);
-  const user = false;
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [userExists, setUserExists] = useState(false);
+  const navigate = useNavigate();
 
   const handleName = ({ target: { value } }) => {
     setName(value);
@@ -20,12 +22,26 @@ export default function Register() {
     setPassword(value);
   };
 
+  const onClick = () => {
+    const params = {
+      endpoint: '/login/register',
+      body: { name, email, password },
+      setUserExists,
+      navigate,
+    };
+    fetchTokenRegister(params);
+  };
+
   useEffect(() => {
-    const minSize = 6;
-    const maxSize = 12;
+    const minPassSize = 6;
+    const minNameSize = 12;
     const testEmail = /^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i;
-    if (testEmail.test(email) && password.length >= minSize && name.length >= maxSize) {
-      setisDisabled(false);
+    if (testEmail.test(email)
+      && password.length >= minPassSize
+      && name.length >= minNameSize) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   }, [email, password, name]);
 
@@ -57,11 +73,11 @@ export default function Register() {
         type="button"
         data-testid="common_register__button-register"
         disabled={ isDisabled }
-        onClick={ () => console.log('criou') }
+        onClick={ () => onClick() }
       >
         CADASTRAR
       </button>
-      {user && (
+      {userExists && (
         <span
           data-testid="common_register__element-invalid_register"
         >

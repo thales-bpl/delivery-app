@@ -1,5 +1,10 @@
 const userService = require('../services/userService');
 
+const getAll = async (req, res) => {
+  const allUsers = await userService.getAll();
+  return res.status(200).json(allUsers);
+};
+
 const verifyLogin = async (req, res) => {
   const { email, password } = req.body;
   const logged = await userService.verifyLogin(email, password);
@@ -15,4 +20,5 @@ const registerLogin = async (req, res) => {
 module.exports = {
   verifyLogin,
   registerLogin,
+  getAll,
 };

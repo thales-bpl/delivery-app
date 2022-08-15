@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import fetchToken from '../api/fetchToken';
 import rockGlass from '../images/rockGlass.svg';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [isFailed, setIsFailed] = useState(false);
-  const isFailed = false;
+  const [isFailed, setIsFailed] = useState(false);
 
   const handleEmail = ({ target: { value } }) => {
     setEmail(value);
@@ -28,6 +29,16 @@ export default function Login() {
     }
   }, [email, password]);
 
+  const onClick = () => {
+    const params = {
+      endpoint: '/login',
+      body: { email, password },
+      setIsFailed,
+      navigate,
+    };
+    fetchToken(params);
+  };
+
   return (
     <div className="login">
       <object
@@ -40,7 +51,6 @@ export default function Login() {
       </object>
       <input
         type="email"
-        name="email"
         data-testid="common_login__input-email"
         placeholder="email@trybeer.com.br"
         onChange={ handleEmail }
@@ -56,7 +66,7 @@ export default function Login() {
         type="submit"
         data-testid="common_login__button-login"
         disabled={ isDisabled }
-        onClick={ () => console.log('logou') }
+        onClick={ () => onClick() }
       >
         Login
       </button>

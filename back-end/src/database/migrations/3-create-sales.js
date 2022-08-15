@@ -3,7 +3,7 @@
 // TO-DO: total_price precisa ser tipo DECIMAL (atualmente está vindo como INT)
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Sales', {
+    await queryInterface.createTable('sales', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,14 +14,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           key: 'id',
-          model: 'Users',
+          model: 'users',
         }
       },
       seller_id: {
         type: Sequelize.INTEGER,
         references: {
           key: 'id',
-          model: 'Users',
+          model: 'users',
         }
       },
       total_price: {
@@ -50,6 +50,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Sales');
+    await queryInterface.dropTable('sales');
   }
 };
