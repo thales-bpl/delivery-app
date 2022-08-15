@@ -11,8 +11,8 @@ const fetchProducts = async (setProducts) => {
 
   await api.get(endpoint)
     .then((data) => {
-      console.log(data);
-      setProducts(data);
+      console.log(data.data);
+      setProducts(data.data);
       // console.log(data);
       // localStorage.setItem('user', JSON.stringify(data.token));
     })
