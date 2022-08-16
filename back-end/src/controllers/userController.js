@@ -1,8 +1,13 @@
 const userService = require('../services/userService');
 
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   const allUsers = await userService.getAll();
   return res.status(200).json(allUsers);
+};
+
+const getAllSellers = async(_req, res) => {
+  const allSellers = await userService.getAllSellers();
+  return res.status(200).json(allSellers);
 };
 
 const verifyLogin = async (req, res) => {
@@ -18,7 +23,8 @@ const registerLogin = async (req, res) => {
 };
 
 module.exports = {
+  getAll,
+  getAllSellers,
   verifyLogin,
   registerLogin,
-  getAll,
 };
