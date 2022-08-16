@@ -43,7 +43,7 @@ export default function Products() {
           <Card
             key={ id }
             index={ id }
-            price={ price }
+            price={ price.toString() }
             urlImage={ urlImage }
             name={ name }
             showItens={ showItens }
