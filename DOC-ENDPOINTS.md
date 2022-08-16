@@ -238,27 +238,25 @@
 
     [
       {
+        "id": 2,
         "userId": 1,
         "sellerId": 1,
         "totalPrice": 10.55,
         "deliveryAddress": "Rua do Teste",
-        "deliveryNumber": 101,
-        "products": [
-          { "product_id": 2, "quantity": 2 },
-          { "product_id": 3, "quantity": 3 }
-        ]
+        "deliveryNumber": "101",
+        "status": "Pendente",
+        "saleDate": "2022-08-16T18:54:21.000Z"
       }
       (...)
       {
+        "id": 2,
         "userId": 1,
         "sellerId": 1,
         "totalPrice": 10.55,
         "deliveryAddress": "Rua do Teste",
-        "deliveryNumber": 101,
-        "products": [
-          { "product_id": 2, "quantity": 2 },
-          { "product_id": 3, "quantity": 3 }
-        ]
+        "deliveryNumber": "101",
+        "status": "Pendente",
+        "saleDate": "2022-08-16T18:54:21.000Z"
       }
     ]
 
@@ -281,15 +279,14 @@
     Json:<br>
 
     {
+      "id": 2,
       "userId": 1,
       "sellerId": 1,
       "totalPrice": 10.55,
       "deliveryAddress": "Rua do Teste",
-      "deliveryNumber": 101,
-      "products": [
-        { "product_id": 2, "quantity": 2 },
-        { "product_id": 3, "quantity": 3 }
-      ]
+      "deliveryNumber": "101",
+      "status": "Pendente",
+      "saleDate": "2022-08-16T18:54:21.000Z"
     }
 
   </details>
