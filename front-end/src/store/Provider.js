@@ -4,7 +4,7 @@ import MainContext from './Context';
 
 function MainProvider({ children }) {
   const [showName, setShowName] = useState('');
-  const [productsCart, setProductsCart] = useState('teste context');
+  const [productsCart, setProductsCart] = useState([]);
   const defaultContext = useMemo(() => (
     { showName, setShowName, productsCart, setProductsCart }
   ), [showName, productsCart]);
@@ -17,7 +17,7 @@ function MainProvider({ children }) {
 }
 
 MainProvider.propTypes = {
-  children: PropTypes.isRequired,
+  children: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default MainProvider;
