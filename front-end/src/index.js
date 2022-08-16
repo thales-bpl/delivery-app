@@ -4,11 +4,14 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
 import MainProvider from './store/Provider';
+import CarProvider from './store/Car.provider';
 
 ReactDOM.render(
   <React.StrictMode>
     <MainProvider>
-      <App />
+      <CarProvider>
+        <App />
+      </CarProvider>
     </MainProvider>
   </React.StrictMode>,
   document.getElementById('root'),
