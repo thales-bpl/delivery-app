@@ -10,22 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // sale.belongsTo(models.User, {
-      //   foreignKey: 'user_id',
-      //   as: 'user',
-      // });
     }
   }
 
   sale.init({
-    user_id: DataTypes.INTEGER,
-    seller_id: DataTypes.INTEGER,
-    total_price: DataTypes.DECIMAL(9, 2),
-    delivery_address: DataTypes.STRING,
-    delivery_number: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
+    sellerId: DataTypes.INTEGER,
+    totalPrice: DataTypes.DECIMAL(9, 2),
+    deliveryAddress: DataTypes.STRING,
+    deliveryNumber: DataTypes.STRING,
     status: DataTypes.STRING,
-    sale_date: { type: DataTypes.DATE, defaultValue: Date.now() },
+    saleDate: { type: DataTypes.DATE, defaultValue: new Date() },
   }, {
+    underscored: true,
     timestamps: false,
     sequelize,
     modelName: 'sale',

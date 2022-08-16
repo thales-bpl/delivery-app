@@ -1,6 +1,6 @@
 'use strict';
 
-// TO-DO: total_price precisa ser tipo DECIMAL (atualmente está vindo como INT)
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('sales', {
