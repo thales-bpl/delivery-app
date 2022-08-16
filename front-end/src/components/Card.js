@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 const cervejaBugada = require('../images/antarctica_pilsen_300ml.jpg');
 
 export default function CardProduct({ index, price, name }) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(null);
 
   const handleChange = (event) => {
     if (event.target.value <= 0) {
-      setQuantity(0);
+      setQuantity(null);
     } else {
       setQuantity(event.target.value);
     }
@@ -54,6 +54,7 @@ export default function CardProduct({ index, price, name }) {
           min="0"
           data-testid={ `customer_products__input-card-quantity-${index}` }
           value={ quantity }
+          placeholder="0"
           onChange={ (event) => { handleChange(event); } }
         />
         <button
