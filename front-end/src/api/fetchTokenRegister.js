@@ -15,7 +15,8 @@ const fetchTokenRegister = async (dataTest) => {
 
   await api.post(endpoint, body)
     .then(({ data }) => {
-      localStorage.setItem('user', JSON.stringify(data.token));
+      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('token', JSON.stringify(data.token));
       setUserExists(false);
       navigate('/customer/products');
     })

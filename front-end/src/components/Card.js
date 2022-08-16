@@ -6,8 +6,6 @@ const cervejaBugada = require('../images/antarctica_pilsen_300ml.jpg');
 export default function CardProduct({ index, price, name }) {
   const [quantity, setQuantity] = useState(0);
 
-  // console.log(a);
-
   const handleChange = (event) => {
     if (event.target.value <= 0) {
       setQuantity(0);
