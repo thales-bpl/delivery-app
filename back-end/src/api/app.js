@@ -1,11 +1,11 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
+const path = require('path');
 const errorHandler = require('../error/errorHandler');
 const userRouter = require('../routes/userRouter');
 const productRouter = require('../routes/productRouter');
 const saleRouter = require('../routes/saleRouter');
-const path = require('path');
 
 const app = express();
 app.use(express.json());
