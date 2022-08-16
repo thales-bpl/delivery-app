@@ -25,8 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   salesProducts.init({
-    product_id: DataTypes.INTEGER,
+    productId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER
   }, {
     underscored: true,
