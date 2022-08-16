@@ -1,23 +1,55 @@
 import React, { useState, useEffect, useContext } from 'react';
 import FinishOrderBtn from '../components/FinishOrderBtn';
 import MainContext from '../store/Context';
+import RemoveBtn from '../components/RemoveBtn';
+// import getLocalStorage from '../services/getLocalStorage';
 
 export default function Checkout() {
-  // const [produtos, setProdutos] = useState([]);
   // const [total, setTotal] = useState(0);
   // const [seller, setSeller] = useState('');
   const [adressInput, setAdressInput] = useState('');
   const [adssNumberInput, setAdssNumberInput] = useState('');
-  const { productsCart } = useContext(MainContext);
+  const { productsCart, setProductsCart } = useContext(MainContext);
+
+  const products = [ // mock
+    {
+      id: 1,
+      name: 'Skol Lata 250ml',
+      price: 2.20,
+      quantity: 4,
+    },
+    {
+      id: 11,
+      name: 'Stella Artois 275ml',
+      price: 3.49,
+      quantity: 12,
+    },
+  ];
+
+  const calculateTotal = () => {
+    let total = 0;
+    productsCart.forEach(({ quantity, price }) => {
+      total += (price * quantity);
+    });
+    return total.toFixed(2);
+  };
+
+  const getProductsCart = () => {
+    // const products = getLocalStorage('cart');
+    // if (products) {
+    //   setProductsCart(products);
+    // }
+    setProductsCart(products);
+  };
 
   useEffect(() => {
-    // falta implementar
-    console.log(productsCart);
+    getProductsCart();
   }, []);
+  console.log(productsCart);
 
   return (
     <main className="checkout_main">
-      Finalizar Pedido
+      <h2>Finalizar Pedido</h2>
       <table className="checkout_produts_section">
         <thead className="checkout_table_head">
           <tr>
@@ -29,28 +61,30 @@ export default function Checkout() {
             <th>Remover Item</th>
           </tr>
         </thead>
-        {/* <tbody className="checkout_table_body">
+        <tbody className="checkout_table_body">
           {
-            products.map((product, index) => (
+            productsCart.map((product, index) => (
               <tr
-                data-testid={`element-order-table-name-${index}`}
+                data-testid={ `element-order-table-name-${index}` }
                 key={ index }
               >
-                <td>{ item }</td>
+                <td>{ index }</td>
                 <td>{ product.name }</td>
-                { name or description?? }
                 <td>{ product.quantity }</td>
-                <td>{ product.unitValue }</td>
-                <td>{ subTotal }</td>
-                <td>{ Botão excluir }</td>
+                <td>{ product.price }</td>
+                <td>{ (product.price * product.quantity).toFixed(2) }</td>
+                <td>
+                  <RemoveBtn id={ product.id } />
+                </td>
               </tr>
             ))
           }
-        </tbody> */}
-        <div className="checkout_total_div">Total: R$XX,XX</div>
+        </tbody>
       </table>
-      Detalhes e Endereço para Entrega
+      <aside className="checkout_total_div">{`Total: ${calculateTotal()}`}</aside>
       <form>
+        <h2>Detalhes e Endereço para Entrega</h2>
+        <br />
         <label htmlFor="checkout_seller_option" className="label">
           P.Vendedora Responsável:
           <select className="checkout_select">
