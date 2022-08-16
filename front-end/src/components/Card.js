@@ -7,7 +7,6 @@ const cervejaBugada = require('../images/antarctica_pilsen_300ml.jpg');
 export default function CardProduct({ index, price, name, showItens }) {
   const [quantity, setQuantity] = useState(0);
   const { cart, setCart } = useContext(CarContext);
-  console.log(index);
   const cartProduct = {
     id: index,
     name,
@@ -102,5 +101,5 @@ CardProduct.propTypes = {
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   // urlImage: PropTypes.string.isRequired,
-  showItens: PropTypes.isRequired,
+  showItens: PropTypes.instanceOf(Array).isRequired,
 };
