@@ -3,20 +3,17 @@ import { Link } from 'react-router-dom';
 import fetchProducts from '../api/fetchProducts';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
+import setLocalStorage from '../services/setLocalStorage';
 import CarContext from '../store/Car.context';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [disable, setDisable] = useState(true);
+  // const [checkout, setCheckout] = useState([]);
   const [showTotalPrice, setShowTotalPrice] = useState(0);
   const { cart } = useContext(CarContext);
 
-  const convertUrlImage = (urlImage) => {
-    const urlWithBasePath = urlImage;
-    const resultUrl = urlWithBasePath.replace(/^http[s]?:\/\/.+?\//, '');
-    return resultUrl;
-    // https://stackoverflow.com/questions/11550790/remove-hostname-and-port-from-url-using-regular-expression
-  };
+  const showItens = [];
 
   useEffect(() => {
     if (showTotalPrice === '0,00') {
@@ -47,8 +44,9 @@ export default function Products() {
             key={ id }
             index={ id }
             price={ price }
-            urlImage={ convertUrlImage(urlImage) }
+            urlImage={ urlImage }
             name={ name }
+            showItens={ showItens }
           />),
       )}
       <Link
@@ -59,9 +57,11 @@ export default function Products() {
           disabled={ disable }
           type="button"
           data-testid="customer_products__button-cart"
+          onClick={ () => setLocalStorage('productsCart', cart) }
         >
+          Ver carrinho: R$
           {
-            cart.length === 0 ? 0 : showTotalPrice
+            cart.length === 0 ? '0,00' : showTotalPrice
           }
         </button>
       </Link>

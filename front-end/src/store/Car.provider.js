@@ -3,8 +3,8 @@ import React, { useMemo, useState } from 'react';
 import CarContext from './Car.context';
 
 function CarProvider({ children }) {
-  const [cart, setcart] = useState([]);
-  const defaultContext = useMemo(() => ({ cart, setcart }), [cart]);
+  const [cart, setCart] = useState([]);
+  const defaultContext = useMemo(() => ({ cart, setCart }), [cart]);
   return (
     <CarContext.Provider value={ defaultContext }>
       { children }

@@ -1,10 +1,24 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import CarContext from '../store/Car.context';
 
 const cervejaBugada = require('../images/antarctica_pilsen_300ml.jpg');
 
-export default function CardProduct({ index, price, name }) {
-  const [quantity, setQuantity] = useState(null);
+export default function CardProduct({ index, price, name, showItens }) {
+  const [quantity, setQuantity] = useState(0);
+  const { cart, setCart } = useContext(CarContext);
+  console.log(index);
+  const cartProduct = {
+    id: index,
+    name,
+    price,
+    quantity: Number(quantity),
+    subtotal: (price * quantity).toFixed(2),
+  };
+
+  if (cartProduct > 0) {
+    showItens.push(cartProduct);
+  }
 
   const handleChange = (event) => {
     if (event.target.value <= 0) {
@@ -26,9 +40,23 @@ export default function CardProduct({ index, price, name }) {
     }
   };
 
+  useEffect(() => {
+    const finalCart = cart.filter((prod) => prod.name !== name)
+      .filter((prod) => prod.quantity !== 0);
+    if (cartProduct.quantity <= 0) {
+      setCart([...finalCart]);
+    } else {
+      setCart([...finalCart, cartProduct]);
+    }
+  }, [quantity]);
+
   return (
     <div>
-      <span data-testid={ `customer_products__element-card-price-${index}` }>
+      <span
+        data-testid={
+          `[customer_products__element-card-price-${index}][data-testid$='-${index}']`
+        }
+      >
         { price.replace('.', ',') }
       </span>
       <img
@@ -74,4 +102,5 @@ CardProduct.propTypes = {
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   // urlImage: PropTypes.string.isRequired,
+  showItens: PropTypes.isRequired,
 };
