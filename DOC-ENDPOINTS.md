@@ -44,6 +44,34 @@
 
 <details>
   <summary>
+    <b><strong>GET ALL SELLERS</strong></b>
+  </summary>
+  GET(http://localhost:3001/login/sellers)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 2,
+        "name": "Fulana Pereira",
+        "email": "fulana@deliveryapp.com",
+        "password": "3c28d2b0881bf46457a853e0b07531c6",
+        "role": "seller"
+      }
+    ]
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
     <b><strong>REGISTER</strong></b>
   </summary>
   POST(http://localhost:3001/login/register)
