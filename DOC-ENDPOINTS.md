@@ -223,4 +223,119 @@
 
 ## SALES
 
+<details>
+  <summary>
+    <b><strong>GET ALL</strong></b>
+  </summary>
+  GET(http://localhost:3001/sale/)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "userId": 1,
+        "sellerId": 1,
+        "totalPrice": 10.55,
+        "deliveryAddress": "Rua do Teste",
+        "deliveryNumber": 101,
+        "products": [
+          { "product_id": 2, "quantity": 2 },
+          { "product_id": 3, "quantity": 3 }
+        ]
+      }
+      (...)
+      {
+        "userId": 1,
+        "sellerId": 1,
+        "totalPrice": 10.55,
+        "deliveryAddress": "Rua do Teste",
+        "deliveryNumber": 101,
+        "products": [
+          { "product_id": 2, "quantity": 2 },
+          { "product_id": 3, "quantity": 3 }
+        ]
+      }
+    ]
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>GET BY ID</strong></b>
+  </summary>
+  GET(http://localhost:3001/sale/1)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    {
+      "userId": 1,
+      "sellerId": 1,
+      "totalPrice": 10.55,
+      "deliveryAddress": "Rua do Teste",
+      "deliveryNumber": 101,
+      "products": [
+        { "product_id": 2, "quantity": 2 },
+        { "product_id": 3, "quantity": 3 }
+      ]
+    }
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>POST</strong></b>
+  </summary>
+  POST(http://localhost:3001/sale/1)
+
+  <details>
+    <summary>
+      <b>REQUEST</b>
+    </summary>
+    Body:<br>
+
+    {
+      "userId": 1,
+      "sellerId": 1,
+      "totalPrice": 10.55,
+      "deliveryAddress": "Rua do Teste",
+      "deliveryNumber": 101,
+      "products": [
+        { "product_id": 2, "quantity": 2 },
+        { "product_id": 3, "quantity": 3 }
+      ]
+    }
+
+  </details>
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 201<br>
+    Json:<br>
+
+    {
+      "newSaleId": 3
+    }
+
+  </details>
+</details>
+
+---
+
 ## SALESPRODUCTS
