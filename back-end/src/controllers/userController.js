@@ -5,7 +5,7 @@ const getAll = async (_req, res) => {
   return res.status(200).json(allUsers);
 };
 
-const getAllSellers = async(_req, res) => {
+const getAllSellers = async (_req, res) => {
   const allSellers = await userService.getAllSellers();
   return res.status(200).json(allSellers);
 };
