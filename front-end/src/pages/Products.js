@@ -6,11 +6,17 @@ import Navbar from '../components/Navbar';
 export default function Products() {
   const [products, setProducts] = useState([]);
 
+  const convertUrlImage = (urlImage) => {
+    const urlWithBasePath = urlImage;
+    const resultUrl = urlWithBasePath.replace(/^http[s]?:\/\/.+?\//, '');
+    return resultUrl;
+    // https://stackoverflow.com/questions/11550790/remove-hostname-and-port-from-url-using-regular-expression
+  };
+
   useEffect(() => {
     fetchProducts(setProducts);
   }, []);
 
-  console.log(products);
   return (
     <>
       <Navbar />
@@ -20,7 +26,7 @@ export default function Products() {
             key={ id }
             index={ id }
             price={ price }
-            urlImage={ urlImage }
+            urlImage={ convertUrlImage(urlImage) }
             name={ name }
           />),
       )}
