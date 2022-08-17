@@ -8,9 +8,9 @@ const getAll = async () => { // TO-DO: JOINS
 
 const getById = async (id) => { // TO-DO: JOINS
   const saleById = await sale.findByPk(id, {
-    include: [
-      { model: salesProducts, as: 'products', attributes: ['productId', 'quantity'] }
-    ]
+    // include: [
+    //   { model: salesProducts, as: 'products', attributes: ['productId', 'quantity'] };
+    // ]
   });
   return saleById;
 };
