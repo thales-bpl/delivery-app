@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const createSale = async (body) => {
-  const endpoint = '/sales';
+  const endpoint = '/sale';
   const { data } = await api.post(endpoint, body);
   return data;
 };

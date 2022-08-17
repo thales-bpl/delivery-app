@@ -1,17 +1,15 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import MainContext from '../store/Context';
-// import { createSale } from '../api/createSale';
+import { createSale } from '../api/createSale';
 import getLocalStorage from '../services/getLocalStorage';
 
-export default function FinishOrderBtn() {
+export default function FinishOrderBtn({ totalPrice, adressInput, adssNumberInput }) {
   const navigate = useNavigate();
   const {
     productsCart,
-    totalPrice,
     selectedSeller,
-    adressInput,
-    adssNumberInput,
   } = useContext(MainContext);
 
   const handleClick = async () => {
@@ -24,13 +22,13 @@ export default function FinishOrderBtn() {
       userId: user.id,
       sellerId: selectedSeller,
       totalPrice,
-      deliveryAdress: adressInput,
+      deliveryAddress: adressInput,
       deliveryNumber: adssNumberInput,
       products: salesProducts,
     };
     console.log(payload);
-    // await createSale(payload)
-    //   .then(navigate(`/customer/orders/${id}`));
+    const { newSaleId } = await createSale(payload);
+    navigate(`/customer/orders/${newSaleId}`);
   };
 
   return (
@@ -43,6 +41,12 @@ export default function FinishOrderBtn() {
     </button>
   );
 }
+
+FinishOrderBtn.propTypes = {
+  totalPrice: PropTypes.string.isRequired,
+  adressInput: PropTypes.string.isRequired,
+  adssNumberInput: PropTypes.string.isRequired,
+};
 
 // {
 //   "userId": 2,
