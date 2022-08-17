@@ -1,49 +1,42 @@
 import React, { useState, useEffect, useContext } from 'react';
+// import { apiSellers } from '../api/apiSellers';
 import FinishOrderBtn from '../components/FinishOrderBtn';
 import MainContext from '../store/Context';
 import RemoveBtn from '../components/RemoveBtn';
-// import getLocalStorage from '../services/getLocalStorage';
+import getLocalStorage from '../services/getLocalStorage';
 
 export default function Checkout() {
-  // const [total, setTotal] = useState(0);
-  // const [seller, setSeller] = useState('');
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [sellers, setSellers] = useState([]);
   const [adressInput, setAdressInput] = useState('');
   const [adssNumberInput, setAdssNumberInput] = useState('');
-  const { productsCart, setProductsCart } = useContext(MainContext);
-
-  const products = [ // mock
-    {
-      id: 1,
-      name: 'Skol Lata 250ml',
-      price: 2.20,
-      quantity: 4,
-    },
-    {
-      id: 11,
-      name: 'Stella Artois 275ml',
-      price: 3.49,
-      quantity: 12,
-    },
-  ];
+  const { productsCart, setProductsCart, setSelectedSeller } = useContext(MainContext);
 
   const calculateTotal = () => {
     let total = 0;
     productsCart.forEach(({ quantity, price }) => {
       total += (price * quantity);
     });
-    return total.toFixed(2);
+    setTotalPrice(total.toFixed(2));
   };
 
   const getProductsCart = () => {
-    // const products = getLocalStorage('cart');
-    // if (products) {
-    //   setProductsCart(products);
-    // }
-    setProductsCart(products);
+    const products = getLocalStorage('productsCart');
+    console.log(products);
+    if (products) {
+      setProductsCart(products);
+    }
   };
 
+  // const getSellers = () => {
+  //   const data = apiSellers();
+  //   setSellers(data);
+  // };
+
   useEffect(() => {
+    // getSellers();
     getProductsCart();
+    calculateTotal();
   }, []);
   console.log(productsCart);
 
@@ -68,10 +61,10 @@ export default function Checkout() {
                 data-testid={ `element-order-table-name-${index}` }
                 key={ index }
               >
-                <td>{ index }</td>
+                <td>{ index + 1 }</td>
                 <td>{ product.name }</td>
                 <td>{ product.quantity }</td>
-                <td>{ product.price }</td>
+                <td>{ Number(product.price).toFixed(2) }</td>
                 <td>{ (product.price * product.quantity).toFixed(2) }</td>
                 <td>
                   <RemoveBtn id={ product.id } />
@@ -81,15 +74,25 @@ export default function Checkout() {
           }
         </tbody>
       </table>
-      <aside className="checkout_total_div">{`Total: ${calculateTotal()}`}</aside>
+      <aside className="checkout_total_div">{`Total: ${totalPrice}`}</aside>
       <form>
         <h2>Detalhes e Endereço para Entrega</h2>
         <br />
         <label htmlFor="checkout_seller_option" className="label">
           P.Vendedora Responsável:
-          <select className="checkout_select">
-            <option id="checkout_seller_option">Algum vendedor qualquer</option>
-            <option id="checkout_seller_option">Outro vendedor qualquer</option>
+          <select className="checkout_select" id="checkout_seller_option">
+            {
+              sellers.map((seller) => (
+                <option
+                  key={ seller.id }
+                  onChange={ setSelectedSeller(seller.id) }
+                >
+                  { seller.name }
+                </option>
+              ))
+            }
+            <option>Algum vendedor qualquer</option>
+            <option>Outro vendedor qualquer</option>
           </select>
         </label>
         <label htmlFor="checkout_adressInput">

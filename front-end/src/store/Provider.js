@@ -5,9 +5,17 @@ import MainContext from './Context';
 function MainProvider({ children }) {
   const [showName, setShowName] = useState('');
   const [productsCart, setProductsCart] = useState([]);
+  const [selectedSeller, setSelectedSeller] = useState('');
   const defaultContext = useMemo(() => (
-    { showName, setShowName, productsCart, setProductsCart }
-  ), [showName, productsCart]);
+    {
+      showName,
+      setShowName,
+      productsCart,
+      setProductsCart,
+      selectedSeller,
+      setSelectedSeller,
+    }
+  ), [showName, productsCart, selectedSeller, setSelectedSeller]);
 
   return (
     <MainContext.Provider value={ defaultContext }>
