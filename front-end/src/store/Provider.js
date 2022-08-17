@@ -15,7 +15,7 @@ function MainProvider({ children }) {
       selectedSeller,
       setSelectedSeller,
     }
-  ), [showName, productsCart, selectedSeller, setSelectedSeller]);
+  ), [showName, productsCart, selectedSeller]);
 
   return (
     <MainContext.Provider value={ defaultContext }>
