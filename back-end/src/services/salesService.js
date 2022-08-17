@@ -1,16 +1,20 @@
-const { sale } = require('../database/models');
-const { salesProducts } = require('../database/models');
+const { sale, product, salesProducts } = require('../database/models');
 
-const getAll = async () => { // TO-DO: JOINS
-  const allSales = await sale.findAll();
+const getAll = async () => { // TO-DO: OPTIMIZE JOINS
+  const allSales = await sale.findAll({
+    include: [
+      { model: product, as: 'products' },
+    ],
+  });
+
   return allSales;
 };
 
-const getById = async (id) => { // TO-DO: JOINS
+const getById = async (id) => { // TO-DO: OPTIMIZE JOINS
   const saleById = await sale.findByPk(id, {
-    // include: [
-    //   { model: salesProducts, as: 'products', attributes: ['productId', 'quantity'] };
-    // ]
+    include: [
+      { model: product, as: 'products' },
+    ],
   });
   return saleById;
 };
@@ -26,14 +30,11 @@ const postSale = async (saleBody) => {
 };
 
 const postSaleProduct = async (salesProductBody) => {
-  const { products } = salesProductBody;
+  const { purchasedProducts } = salesProductBody;
   const newSaleId = await postSale(salesProductBody);
 
-  await salesProducts.bulkCreate({
-    products,
-  }, {
-    where: { id: newSaleId },
-  });
+  const newProducts = purchasedProducts.map((item) => ({ ...item, saleId: newSaleId }));
+  await salesProducts.bulkCreate(newProducts);
 
   return { newSaleId };
 };

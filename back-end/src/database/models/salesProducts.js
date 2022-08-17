@@ -12,16 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       models.product.belongsToMany(models.sale, {
         through: salesProducts,
-        foreignKey: 'saleId',
-        otherKey: 'productId',
-        as: 'Sales',
+        foreignKey: 'productId',
+        otherKey: 'saleId',
+        as: 'sales',
       });
 
       models.sale.belongsToMany(models.product, {
         through: salesProducts,
-        foreignKey: 'productId',
-        otherKey: 'saleId',
-        as: 'Products',
+        foreignKey: 'saleId',
+        otherKey: 'productId',
+        as: 'products',
       });
     }
   }
