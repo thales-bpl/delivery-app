@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const apiSellers = async () => {
-  const endpoint = '/sellers';
+  const endpoint = 'login/sellers';
   const { data } = await api.get(endpoint);
   return data;
 };
