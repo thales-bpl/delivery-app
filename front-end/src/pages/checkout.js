@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import { apiSellers } from '../api/apiSellers';
+import { apiSellers } from '../api/apiSellers';
 import FinishOrderBtn from '../components/FinishOrderBtn';
 import MainContext from '../store/Context';
 import RemoveBtn from '../components/RemoveBtn';
 import getLocalStorage from '../services/getLocalStorage';
 
 export default function Checkout() {
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState('0');
   const [sellers, setSellers] = useState([]);
   const [adressInput, setAdressInput] = useState('');
   const [adssNumberInput, setAdssNumberInput] = useState('');
@@ -22,23 +22,29 @@ export default function Checkout() {
 
   const getProductsCart = () => {
     const products = getLocalStorage('productsCart');
-    console.log(products);
     if (products) {
       setProductsCart(products);
     }
   };
 
-  // const getSellers = () => {
-  //   const data = apiSellers();
-  //   setSellers(data);
-  // };
+  const getSellers = async () => {
+    const data = await apiSellers();
+    setSellers(data);
+    setSelectedSeller(data[0].id);
+  };
+
+  const handleSellerChange = (id) => {
+    setSelectedSeller(id);
+  };
 
   useEffect(() => {
-    // getSellers();
+    getSellers();
     getProductsCart();
-    calculateTotal();
   }, []);
-  console.log(productsCart);
+
+  useEffect(() => {
+    calculateTotal();
+  }, [productsCart]);
 
   return (
     <main className="checkout_main">
@@ -80,19 +86,21 @@ export default function Checkout() {
         <br />
         <label htmlFor="checkout_seller_option" className="label">
           P.Vendedora Responsável:
-          <select className="checkout_select" id="checkout_seller_option">
+          <select
+            className="checkout_select"
+            id="checkout_seller_option"
+          >
             {
               sellers.map((seller) => (
                 <option
                   key={ seller.id }
-                  onChange={ setSelectedSeller(seller.id) }
+                  onChange={ () => handleSellerChange(seller.id) }
+                  value={ seller.id }
                 >
                   { seller.name }
                 </option>
               ))
             }
-            <option>Algum vendedor qualquer</option>
-            <option>Outro vendedor qualquer</option>
           </select>
         </label>
         <label htmlFor="checkout_adressInput">
@@ -116,7 +124,11 @@ export default function Checkout() {
           />
         </label>
       </form>
-      <FinishOrderBtn />
+      <FinishOrderBtn
+        adressInput={ adressInput }
+        adssNumberInput={ adssNumberInput }
+        totalPrice={ totalPrice }
+      />
     </main>
   );
 }
