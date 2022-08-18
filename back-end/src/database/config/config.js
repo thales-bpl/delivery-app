@@ -22,7 +22,7 @@ const options = {
     timezone: 'Z',
     decimalNumbers: true
   },
-  logging: false,
+  logging: console.log,
 };
 
 module.exports = {
