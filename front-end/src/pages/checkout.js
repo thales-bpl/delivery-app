@@ -68,7 +68,13 @@ export default function Checkout() {
               <tr
                 key={ index }
               >
-                <td>{ index + 1 }</td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-item-number-${index}`
+                  }
+                >
+                  { index + 1 }
+                </td>
 
                 <td
                   data-testid={ `customer_checkout__element-order-table-name-${index}` }
@@ -89,7 +95,7 @@ export default function Checkout() {
                     `customer_checkout__element-order-table-unit-price-${index}`
                   }
                 >
-                  { Number(product.price).toFixed(2) }
+                  { Number(product.price).toFixed(2).replace('.', ',') }
                 </td>
 
                 <td
@@ -97,7 +103,7 @@ export default function Checkout() {
                     `customer_checkout__element-order-table-sub-total-${index}`
                   }
                 >
-                  { (product.price * product.quantity).toFixed(2) }
+                  { (product.price * product.quantity).toFixed(2).replace('.', ',') }
                 </td>
 
                 <td
@@ -116,7 +122,7 @@ export default function Checkout() {
         data-testid="customer_checkout__element-order-total-price"
         className="checkout_total_div"
       >
-        {`Total: ${totalPrice}`}
+        {`Total: ${totalPrice.replace('.', ',')}`}
       </span>
       <form>
         <h2>Detalhes e Endereço para Entrega</h2>
