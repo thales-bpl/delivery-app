@@ -26,14 +26,14 @@ export default function CustomerOrder() {
       <Header />
       <div />
       <div>
-        { orders.length !== 0 ? orders.map((prod) => (
+        { orders.length !== 0 ? orders.map((order) => (
           <CustomerOrderCard
-            key={ prod.id }
-            id={ prod.id }
-            status={ prod.status }
-            saleDate={ prod.saleDate }
-            totalPrice={ prod.totalPrice }
-          />)) : null }
+            key={ order.id }
+            id={ order.id }
+            status={ order.status }
+            saleDate={ order.saleDate }
+            totalPrice={ order.totalPrice }
+          />)) : <span>Você ainda não possui nenhum pedido</span> }
       </div>
     </div>
   );
