@@ -23,7 +23,6 @@ const postSale = async (req, res) => {
   return res.status(201).json(newSale);
 };
 
-
 module.exports = {
   getAll,
   getById,
