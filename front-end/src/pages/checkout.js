@@ -111,12 +111,8 @@ export default function Checkout() {
                   { (product.price * product.quantity).toFixed(2).replace('.', ',') }
                 </td>
 
-                <td
-                  data-testid={
-                    `customer_checkout__element-order-table-remove-${index}`
-                  }
-                >
-                  <RemoveBtn id={ product.id } />
+                <td>
+                  <RemoveBtn id={ product.id } index={ index } />
                 </td>
               </tr>
             ))
