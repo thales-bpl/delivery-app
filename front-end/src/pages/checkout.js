@@ -66,15 +66,45 @@ export default function Checkout() {
           {
             productsCart.map((product, index) => (
               <tr
-                data-testid={ `element-order-table-name-${index}` }
                 key={ index }
               >
                 <td>{ index + 1 }</td>
-                <td>{ product.name }</td>
-                <td>{ product.quantity }</td>
-                <td>{ Number(product.price).toFixed(2) }</td>
-                <td>{ (product.price * product.quantity).toFixed(2) }</td>
-                <td>
+
+                <td
+                  data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                >
+                  { product.name }
+                </td>
+
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-quantity-${index}`
+                  }
+                >
+                  { product.quantity }
+                </td>
+
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-unit-price-${index}`
+                  }
+                >
+                  { Number(product.price).toFixed(2) }
+                </td>
+
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-sub-total-${index}`
+                  }
+                >
+                  { (product.price * product.quantity).toFixed(2) }
+                </td>
+
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-remove-${index}`
+                  }
+                >
                   <RemoveBtn id={ product.id } />
                 </td>
               </tr>
@@ -82,13 +112,19 @@ export default function Checkout() {
           }
         </tbody>
       </table>
-      <aside className="checkout_total_div">{`Total: ${totalPrice}`}</aside>
+      <span
+        data-testid="customer_checkout__element-order-total-price"
+        className="checkout_total_div"
+      >
+        {`Total: ${totalPrice}`}
+      </span>
       <form>
         <h2>Detalhes e Endereço para Entrega</h2>
         <br />
         <label htmlFor="checkout_seller_option" className="label">
           P.Vendedora Responsável:
           <select
+            data-testid="customer_checkout__select-seller"
             className="checkout_select"
             id="checkout_seller_option"
           >
@@ -108,6 +144,7 @@ export default function Checkout() {
         <label htmlFor="checkout_adressInput">
           Endereço
           <input
+            data-testid="customer_checkout__input-address"
             id="checkout_adressInput"
             type="text"
             value={ adressInput }
@@ -118,6 +155,7 @@ export default function Checkout() {
         <label htmlFor="checkout_adssNumberInput">
           Número
           <input
+            data-testid="customer_checkout__input-addressNumber"
             id="checkout_adssNumberInput"
             type="text"
             value={ adssNumberInput }
@@ -127,6 +165,7 @@ export default function Checkout() {
         </label>
       </form>
       <FinishOrderBtn
+        data-testid="customer_checkout__button-submit-order"
         adressInput={ adressInput }
         adssNumberInput={ adssNumberInput }
         totalPrice={ totalPrice }
