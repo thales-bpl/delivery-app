@@ -70,21 +70,23 @@ export default function Checkout() {
               >
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-item-number-${index}`
+                    `customer_checkout__element-order-table-item-number-${index + 1}`
                   }
                 >
                   { index + 1 }
                 </td>
 
                 <td
-                  data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                  data-testid={
+                    `customer_checkout__element-order-table-name-${index + 1}`
+                  }
                 >
                   { product.name }
                 </td>
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-quantity-${index}`
+                    `customer_checkout__element-order-table-quantity-${index + 1}`
                   }
                 >
                   { product.quantity }
@@ -92,7 +94,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-unit-price-${index}`
+                    `customer_checkout__element-order-table-unit-price-${index + 1}`
                   }
                 >
                   { Number(product.price).toFixed(2).replace('.', ',') }
@@ -100,7 +102,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-sub-total-${index}`
+                    `customer_checkout__element-order-table-sub-total-${index + 1}`
                   }
                 >
                   { (product.price * product.quantity).toFixed(2).replace('.', ',') }
@@ -108,7 +110,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-remove-${index}`
+                    `customer_checkout__element-order-table-remove-${index + 1}`
                   }
                 >
                   <RemoveBtn id={ product.id } />
