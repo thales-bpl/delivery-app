@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { apiSellers } from '../api/apiSellers';
 import FinishOrderBtn from '../components/FinishOrderBtn';
 import MainContext from '../store/Context';
@@ -12,14 +12,6 @@ export default function Checkout() {
   const [adressInput, setAdressInput] = useState('');
   const [adssNumberInput, setAdssNumberInput] = useState('');
   const { productsCart, setProductsCart, setSelectedSeller } = useContext(MainContext);
-
-  const calculateTotal = () => {
-    let total = 0;
-    productsCart.forEach(({ quantity, price }) => {
-      total += (price * quantity);
-    });
-    setTotalPrice(total.toFixed(2));
-  };
 
   const getProductsCart = () => {
     const products = getLocalStorage('productsCart');
@@ -38,6 +30,17 @@ export default function Checkout() {
     setSelectedSeller(id);
   };
 
+  const calculateTotal = useCallback(
+    () => {
+      let total = 0;
+      productsCart.forEach(({ quantity, price }) => {
+        total += (price * quantity);
+      });
+      setTotalPrice(total.toFixed(2));
+    },
+    [productsCart],
+  );
+
   useEffect(() => {
     getSellers();
     getProductsCart();
@@ -45,10 +48,10 @@ export default function Checkout() {
 
   useEffect(() => {
     calculateTotal();
-  }, [productsCart]);
+  }, [calculateTotal]);
 
   return (
-    <main className="checkout_main">
+    <>
       <Navbar />
       <h2>Finalizar Pedido</h2>
       <table className="checkout_produts_section">
@@ -70,7 +73,7 @@ export default function Checkout() {
               >
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-item-number-${index + 1}`
+                    `customer_checkout__element-order-table-item-number-${index}`
                   }
                 >
                   { index + 1 }
@@ -78,7 +81,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-name-${index + 1}`
+                    `customer_checkout__element-order-table-name-${index}`
                   }
                 >
                   { product.name }
@@ -86,7 +89,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-quantity-${index + 1}`
+                    `customer_checkout__element-order-table-quantity-${index}`
                   }
                 >
                   { product.quantity }
@@ -94,7 +97,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-unit-price-${index + 1}`
+                    `customer_checkout__element-order-table-unit-price-${index}`
                   }
                 >
                   { Number(product.price).toFixed(2).replace('.', ',') }
@@ -102,7 +105,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-sub-total-${index + 1}`
+                    `customer_checkout__element-order-table-sub-total-${index}`
                   }
                 >
                   { (product.price * product.quantity).toFixed(2).replace('.', ',') }
@@ -110,7 +113,7 @@ export default function Checkout() {
 
                 <td
                   data-testid={
-                    `customer_checkout__element-order-table-remove-${index + 1}`
+                    `customer_checkout__element-order-table-remove-${index}`
                   }
                 >
                   <RemoveBtn id={ product.id } />
@@ -173,11 +176,10 @@ export default function Checkout() {
         </label>
       </form>
       <FinishOrderBtn
-        data-testid="customer_checkout__button-submit-order"
         adressInput={ adressInput }
         adssNumberInput={ adssNumberInput }
         totalPrice={ totalPrice }
       />
-    </main>
+    </>
   );
 }

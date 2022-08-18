@@ -32,6 +32,7 @@ export default function FinishOrderBtn({ totalPrice, adressInput, adssNumberInpu
 
   return (
     <button
+      data-testid="customer_checkout__button-submit-order"
       type="button"
       className="finish_order_btn"
       onClick={ handleClick }
