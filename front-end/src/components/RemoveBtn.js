@@ -8,7 +8,6 @@ export default function RemoveBtn({ id }) {
   const handleClick = () => {
     const updateCart = productsCart.filter((product) => product.id !== id && product);
     setProductsCart(updateCart);
-    console.log(updateCart, id);
   };
 
   return (
