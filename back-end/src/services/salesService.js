@@ -20,7 +20,7 @@ const getById = async (id) => { // TO-DO: OPTIMIZE JOINS
 const getByUserId = async (userId) => { // TO-DO: OPTIMIZE JOINS
   const saleByUser = await sale.findAll({
     include: { model: product, as: 'products' },
-    where: { userId  },
+    where: { userId },
   });
 
   return saleByUser;
@@ -30,7 +30,13 @@ const postSale = async (saleBody) => {
   const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber } = saleBody;
 
   const { id } = await sale.create({
-    userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status: 'Pendente', saleDate: new Date() 
+    userId,
+    sellerId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    status: 'Pendente',
+    saleDate: new Date(),
   });
 
   return id;
