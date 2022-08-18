@@ -4,11 +4,18 @@ import MainContext from './Context';
 
 function MainProvider({ children }) {
   const [showName, setShowName] = useState('');
-  const [productsCart, setProductsCart] = useState('teste context');
-
+  const [productsCart, setProductsCart] = useState([]);
+  const [selectedSeller, setSelectedSeller] = useState('');
   const defaultContext = useMemo(() => (
-    { showName, setShowName, productsCart, setProductsCart }
-  ), [showName, productsCart]);
+    {
+      showName,
+      setShowName,
+      productsCart,
+      setProductsCart,
+      selectedSeller,
+      setSelectedSeller,
+    }
+  ), [showName, productsCart, selectedSeller]);
 
   return (
     <MainContext.Provider value={ defaultContext }>
@@ -18,7 +25,7 @@ function MainProvider({ children }) {
 }
 
 MainProvider.propTypes = {
-  children: PropTypes.isRequired,
+  children: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default MainProvider;
