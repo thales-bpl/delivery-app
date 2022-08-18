@@ -9,7 +9,6 @@ import CarContext from '../store/Car.context';
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [disable, setDisable] = useState(true);
-  // const [checkout, setCheckout] = useState([]);
   const [showTotalPrice, setShowTotalPrice] = useState(0);
   const { cart } = useContext(CarContext);
 
@@ -29,6 +28,7 @@ export default function Products() {
       .toFixed(2);
     const totalPriceCorrect = totalPrice.replace('.', ',');
     setShowTotalPrice(totalPriceCorrect);
+    console.log(products);
   }, [cart]);
 
   useEffect(() => {
@@ -39,10 +39,10 @@ export default function Products() {
     <>
       <Navbar />
       { products.map(
-        ({ price, url_image: urlImage, name, id }) => (
+        ({ price, urlImage, name, id }) => (
           <Card
             key={ id }
-            index={ id }
+            id={ id }
             price={ price.toString() }
             urlImage={ urlImage }
             name={ name }

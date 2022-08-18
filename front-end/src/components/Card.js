@@ -2,13 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import CarContext from '../store/Car.context';
 
-const cervejaBugada = require('../images/antarctica_pilsen_300ml.jpg');
-
-export default function CardProduct({ index, price, name, showItens }) {
+export default function CardProduct({ id, price, name, showItens, urlImage }) {
   const [quantity, setQuantity] = useState(0);
   const { cart, setCart } = useContext(CarContext);
   const cartProduct = {
-    id: index,
+    id,
     name,
     price,
     quantity: Number(quantity),
@@ -53,7 +51,7 @@ export default function CardProduct({ index, price, name, showItens }) {
     <div>
       <span
         data-testid={
-          `[customer_products__element-card-price-${index}][data-testid$='-${index}']`
+          `customer_products__element-card-price-${id}`
         }
       >
         { price.replace('.', ',') }
@@ -61,17 +59,17 @@ export default function CardProduct({ index, price, name, showItens }) {
       <img
         height="100px"
         width="100px"
-        data-testid={ `customer_products__img-card-bg-image-${index}` }
-        src={ cervejaBugada }
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        src={ urlImage }
         alt="Imagem do produto"
       />
-      <p data-testid={ `customer_products__element-card-title-${index}` }>
+      <p data-testid={ `customer_products__element-card-title-${id}` }>
         { name }
       </p>
       <div>
         <button
           type="button"
-          data-testid={ `customer_products__button-card-rm-item-${index}` }
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
           onClick={ removeProduct }
         >
           -
@@ -79,14 +77,14 @@ export default function CardProduct({ index, price, name, showItens }) {
         <input
           type="number"
           min="0"
-          data-testid={ `customer_products__input-card-quantity-${index}` }
+          data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ quantity }
           placeholder="0"
           onChange={ (event) => { handleChange(event); } }
         />
         <button
           type="button"
-          data-testid={ `customer_products__button-card-add-item-${index}` }
+          data-testid={ `customer_products__button-card-add-item-${id}` }
           onClick={ addProduct }
         >
           +
@@ -97,9 +95,9 @@ export default function CardProduct({ index, price, name, showItens }) {
 }
 
 CardProduct.propTypes = {
-  index: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  // urlImage: PropTypes.string.isRequired,
+  urlImage: PropTypes.string.isRequired,
   showItens: PropTypes.instanceOf(Array).isRequired,
 };
