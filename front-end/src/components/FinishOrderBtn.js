@@ -24,9 +24,8 @@ export default function FinishOrderBtn({ totalPrice, adressInput, adssNumberInpu
       totalPrice,
       deliveryAddress: adressInput,
       deliveryNumber: adssNumberInput,
-      products: salesProducts,
+      purchasedProducts: salesProducts,
     };
-    console.log(payload);
     const { newSaleId } = await createSale(payload);
     navigate(`/customer/orders/${newSaleId}`);
   };
@@ -47,15 +46,3 @@ FinishOrderBtn.propTypes = {
   adressInput: PropTypes.string.isRequired,
   adssNumberInput: PropTypes.string.isRequired,
 };
-
-// {
-//   "userId": 2,
-//   "sellerId": 1,
-//   "totalPrice": 14,
-//   "deliveryAddress": "Rua do Alfeneiros",
-//   "deliveryNumber": 20,
-//   "products": [
-//     { "product_id": 2, "quantity": 2 },
-//     { "product_id": 3, "quantity": 3 }
-//   ]
-// }
