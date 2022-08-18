@@ -44,6 +44,34 @@
 
 <details>
   <summary>
+    <b><strong>GET ALL SELLERS</strong></b>
+  </summary>
+  GET(http://localhost:3001/login/sellers)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 2,
+        "name": "Fulana Pereira",
+        "email": "fulana@deliveryapp.com",
+        "password": "3c28d2b0881bf46457a853e0b07531c6",
+        "role": "seller"
+      }
+    ]
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
     <b><strong>REGISTER</strong></b>
   </summary>
   POST(http://localhost:3001/login/register)
@@ -222,5 +250,189 @@
 ---
 
 ## SALES
+
+<details>
+  <summary>
+    <b><strong>GET ALL</strong></b>
+  </summary>
+  GET(http://localhost:3001/sale/)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 1,
+        "userId": 1,
+        "sellerId": 1,
+        "totalPrice": 10.55,
+        "deliveryAddress": "Rua do Teste",
+        "deliveryNumber": "101",
+        "status": "Pendente",
+        "saleDate": "2022-08-17T22:39:16.000Z",
+        "products": [
+          {
+            "id": 2,
+            "name": "Heineken 600ml",
+            "price": 7.5,
+            "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+            "salesProducts": {
+              "productId": 2,
+              "quantity": 2,
+              "saleId": 1
+            }
+          },
+          {
+            "id": 3,
+            "name": "Antarctica Pilsen 300ml",
+            "price": 2.49,
+            "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+            "salesProducts": {
+              "productId": 3,
+              "quantity": 3,
+              "saleId": 1
+            }
+          }
+        ]
+      },
+      (...),
+      {
+        "id": 10,
+        "userId": 1,
+        "sellerId": 1,
+        "totalPrice": 10.55,
+        "deliveryAddress": "Rua do Teste",
+        "deliveryNumber": "101",
+        "status": "Pendente",
+        "saleDate": "2022-08-17T22:39:16.000Z",
+        "products": [
+          {
+            "id": 2,
+            "name": "Heineken 600ml",
+            "price": 7.5,
+            "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+            "salesProducts": {
+              "productId": 2,
+              "quantity": 2,
+              "saleId": 1
+            }
+          },
+          {
+            "id": 3,
+            "name": "Antarctica Pilsen 300ml",
+            "price": 2.49,
+            "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+            "salesProducts": {
+              "productId": 3,
+              "quantity": 3,
+              "saleId": 1
+            }
+          }
+        ]
+      }
+    ]
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>GET BY ID</strong></b>
+  </summary>
+  GET(http://localhost:3001/sale/1)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    {
+      "id": 1,
+      "userId": 1,
+      "sellerId": 1,
+      "totalPrice": 10.55,
+      "deliveryAddress": "Rua do Teste",
+      "deliveryNumber": "101",
+      "status": "Pendente",
+      "saleDate": "2022-08-17T22:39:16.000Z",
+      "products": [
+        {
+          "id": 2,
+          "name": "Heineken 600ml",
+          "price": 7.5,
+          "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+          "salesProducts": {
+            "productId": 2,
+            "quantity": 2,
+            "saleId": 1
+          }
+        },
+        {
+          "id": 3,
+          "name": "Antarctica Pilsen 300ml",
+          "price": 2.49,
+          "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+          "salesProducts": {
+            "productId": 3,
+            "quantity": 3,
+            "saleId": 1
+          }
+        }
+      ]
+    }
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>POST</strong></b>
+  </summary>
+  POST(http://localhost:3001/sale/1)
+
+  <details>
+    <summary>
+      <b>Request</b>
+    </summary>
+    Body:<br>
+
+    {
+      "userId": 1,
+      "sellerId": 1,
+      "totalPrice": 10.55,
+      "deliveryAddress": "Rua do Teste",
+      "deliveryNumber": 101,
+      "purchasedProducts": [
+        { "productId": 2, "quantity": 2 },
+        { "productId": 3, "quantity": 3 }
+      ]
+    }
+
+  </details>
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 201<br>
+    Json:<br>
+
+    {
+      "newSaleId": 3
+    }
+
+  </details>
+</details>
+
+---
 
 ## SALESPRODUCTS

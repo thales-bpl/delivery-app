@@ -8,6 +8,11 @@ const getAll = async () => {
   return allUsers;
 };
 
+const getAllSellers = async () => {
+  const allUsers = await user.findAll({ where: { role: 'seller' } });
+  return allUsers;
+};
+
 const verifyLogin = async (email, password) => {
   const [currentUser] = await user.findAll({ where: { email } });
   const encryptedPass = encrypt(password);
@@ -34,7 +39,8 @@ const registerLogin = async (name, email, password) => {
 };
 
 module.exports = {
+  getAll,
+  getAllSellers,
   verifyLogin,
   registerLogin,
-  getAll,
 };

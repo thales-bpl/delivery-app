@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       user.hasMany(models.sale, {
-        foreignKey: 'user_id',
+        foreignKey: 'userId',
+        foreignKey: 'sellerId',
         as: 'sales',
       });
         
-      // user.hasMany(models.Sale, {
-      //   foreignKey: 'seller_id',
+      // user.hasMany(models.sale, {
+      //   foreignKey: 'sellerId',
       //   as: 'sellerId',
       // });
     }
