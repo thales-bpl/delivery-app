@@ -15,7 +15,7 @@ const generateJWT = (payload) => {
   return token;
 };
 
-const verifyToken = async (token) => {
+const verifyToken = (token) => {
   const verified = jwt.verify(token, secretKey);
   return verified;
 };

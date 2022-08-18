@@ -1,6 +1,7 @@
 const express = require('express');
 const rescue = require('express-rescue');
 const saleController = require('../controllers/saleController');
+const verifyToken = require('../utils/jwt');
 
 const router = express.Router();
 
