@@ -12,8 +12,8 @@ const getById = async (req, res) => {
 };
 
 const postSale = async (req, res) => {
-  const { body } = req;
-  const newSale = await saleService.postSaleProduct(body);
+  const { body, headers } = req;
+  const newSale = await saleService.postSaleProduct(body, headers.authorization);
   return res.status(201).json(newSale);
 };
 

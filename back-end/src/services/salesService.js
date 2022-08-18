@@ -1,4 +1,5 @@
 const { sale, product, salesProducts } = require('../database/models');
+const { verifyToken } = require('../utils/jwt');
 
 const getAll = async () => { // TO-DO: OPTIMIZE JOINS
   const allSales = await sale.findAll({
@@ -29,7 +30,8 @@ const postSale = async (saleBody) => {
   return id;
 };
 
-const postSaleProduct = async (salesProductBody) => {
+const postSaleProduct = async (salesProductBody, token) => {
+  verifyToken(token);
   const { purchasedProducts } = salesProductBody;
   const newSaleId = await postSale(salesProductBody);
 
