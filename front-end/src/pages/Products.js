@@ -28,7 +28,6 @@ export default function Products() {
       .toFixed(2);
     const totalPriceCorrect = totalPrice.replace('.', ',');
     setShowTotalPrice(totalPriceCorrect);
-    console.log(products);
   }, [cart]);
 
   useEffect(() => {
