@@ -266,25 +266,73 @@
 
     [
       {
-        "id": 2,
+        "id": 1,
         "userId": 1,
         "sellerId": 1,
         "totalPrice": 10.55,
         "deliveryAddress": "Rua do Teste",
         "deliveryNumber": "101",
         "status": "Pendente",
-        "saleDate": "2022-08-16T18:54:21.000Z"
-      }
-      (...)
+        "saleDate": "2022-08-17T22:39:16.000Z",
+        "products": [
+          {
+            "id": 2,
+            "name": "Heineken 600ml",
+            "price": 7.5,
+            "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+            "salesProducts": {
+              "productId": 2,
+              "quantity": 2,
+              "saleId": 1
+            }
+          },
+          {
+            "id": 3,
+            "name": "Antarctica Pilsen 300ml",
+            "price": 2.49,
+            "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+            "salesProducts": {
+              "productId": 3,
+              "quantity": 3,
+              "saleId": 1
+            }
+          }
+        ]
+      },
+      (...),
       {
-        "id": 2,
+        "id": 10,
         "userId": 1,
         "sellerId": 1,
         "totalPrice": 10.55,
         "deliveryAddress": "Rua do Teste",
         "deliveryNumber": "101",
         "status": "Pendente",
-        "saleDate": "2022-08-16T18:54:21.000Z"
+        "saleDate": "2022-08-17T22:39:16.000Z",
+        "products": [
+          {
+            "id": 2,
+            "name": "Heineken 600ml",
+            "price": 7.5,
+            "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+            "salesProducts": {
+              "productId": 2,
+              "quantity": 2,
+              "saleId": 1
+            }
+          },
+          {
+            "id": 3,
+            "name": "Antarctica Pilsen 300ml",
+            "price": 2.49,
+            "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+            "salesProducts": {
+              "productId": 3,
+              "quantity": 3,
+              "saleId": 1
+            }
+          }
+        ]
       }
     ]
 
@@ -307,14 +355,38 @@
     Json:<br>
 
     {
-      "id": 2,
+      "id": 1,
       "userId": 1,
       "sellerId": 1,
       "totalPrice": 10.55,
       "deliveryAddress": "Rua do Teste",
       "deliveryNumber": "101",
       "status": "Pendente",
-      "saleDate": "2022-08-16T18:54:21.000Z"
+      "saleDate": "2022-08-17T22:39:16.000Z",
+      "products": [
+        {
+          "id": 2,
+          "name": "Heineken 600ml",
+          "price": 7.5,
+          "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+          "salesProducts": {
+            "productId": 2,
+            "quantity": 2,
+            "saleId": 1
+          }
+        },
+        {
+          "id": 3,
+          "name": "Antarctica Pilsen 300ml",
+          "price": 2.49,
+          "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+          "salesProducts": {
+            "productId": 3,
+            "quantity": 3,
+            "saleId": 1
+          }
+        }
+      ]
     }
 
   </details>
@@ -330,7 +402,7 @@
 
   <details>
     <summary>
-      <b>REQUEST</b>
+      <b>Request</b>
     </summary>
     Body:<br>
 
@@ -340,9 +412,9 @@
       "totalPrice": 10.55,
       "deliveryAddress": "Rua do Teste",
       "deliveryNumber": 101,
-      "products": [
-        { "product_id": 2, "quantity": 2 },
-        { "product_id": 3, "quantity": 3 }
+      "purchasedProducts": [
+        { "productId": 2, "quantity": 2 },
+        { "productId": 3, "quantity": 3 }
       ]
     }
 
