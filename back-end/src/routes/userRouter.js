@@ -7,6 +7,7 @@ const router = express.Router();
 router
   .get('/', rescue(userController.getAll))
   .get('/sellers', rescue(userController.getAllSellers))
+  .get('/seller/:id', rescue(userController.getSellerById))
   .post('/', rescue(userController.verifyLogin))
   .post('/register', rescue(userController.registerLogin));
 
