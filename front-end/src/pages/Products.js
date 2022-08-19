@@ -42,7 +42,7 @@ export default function Products() {
           <Card
             key={ id }
             id={ id }
-            price={ price.toString() }
+            price={ price.toFixed(2).toString() }
             urlImage={ urlImage }
             name={ name }
             showItens={ showItens }

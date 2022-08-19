@@ -13,26 +13,26 @@ export default function FinishOrderBtn({ totalPrice, adressInput, adssNumberInpu
   } = useContext(MainContext);
 
   const handleClick = async () => {
-    const user = getLocalStorage('user');
-    if (!user) navigate('/login');
+    const { id, token } = getLocalStorage('user');
+    if (!id) navigate('/login');
     const salesProducts = productsCart.map((prod) => (
       { productId: prod.id, quantity: prod.quantity }
     ));
     const payload = {
-      userId: user.id,
+      userId: id,
       sellerId: selectedSeller,
       totalPrice,
       deliveryAddress: adressInput,
       deliveryNumber: adssNumberInput,
-      products: salesProducts,
+      purchasedProducts: salesProducts,
     };
-    console.log(payload);
-    const { newSaleId } = await createSale(payload);
+    const { newSaleId } = await createSale(payload, token);
     navigate(`/customer/orders/${newSaleId}`);
   };
 
   return (
     <button
+      data-testid="customer_checkout__button-submit-order"
       type="button"
       className="finish_order_btn"
       onClick={ handleClick }
@@ -47,15 +47,3 @@ FinishOrderBtn.propTypes = {
   adressInput: PropTypes.string.isRequired,
   adssNumberInput: PropTypes.string.isRequired,
 };
-
-// {
-//   "userId": 2,
-//   "sellerId": 1,
-//   "totalPrice": 14,
-//   "deliveryAddress": "Rua do Alfeneiros",
-//   "deliveryNumber": 20,
-//   "products": [
-//     { "product_id": 2, "quantity": 2 },
-//     { "product_id": 3, "quantity": 3 }
-//   ]
-// }

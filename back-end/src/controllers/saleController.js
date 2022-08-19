@@ -6,26 +6,26 @@ const getAll = async (_req, res) => {
 };
 
 const getById = async (req, res) => {
-  const { id } = req.params;
-  const sale = await saleService.getById(id);
+  const { saleId } = req.params;
+  const sale = await saleService.getById(saleId);
   return res.status(200).json(sale);
 };
 
-const postSale = async (req, res) => {
-  const { body } = req;
-  const newSale = await saleService.postSaleProduct(body);
-  return res.status(201).json(newSale);
+const getByUserId = async (req, res) => {
+  const { userId } = req.params;
+  const allUserSales = await saleService.getByUserId(userId);
+  return res.status(200).json(allUserSales);
 };
 
-// const postSaleTest = async (req, res) => {
-//   const { body } = req;
-//   const newSale = await saleService.postSale(body);
-//   return res.status(208).json(newSale);
-// };
+const postSale = async (req, res) => {
+  const { body, headers } = req;
+  const newSale = await saleService.postSaleProduct(body, headers.authorization);
+  return res.status(201).json(newSale);
+};
 
 module.exports = {
   getAll,
   getById,
+  getByUserId,
   postSale,
-  // postSaleTest,
 };
