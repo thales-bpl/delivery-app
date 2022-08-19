@@ -26,6 +26,12 @@ const fetchToken = async (dataTest) => {
       if (data.role === 'seller') {
         navigate('/seller/orders');
       }
+      if (data.role === 'admin') {
+        navigate('/login');
+      }
+      if (!data.role) {
+        navigate('/login');
+      }
     })
     .catch(() => {
       setIsFailed(true);
