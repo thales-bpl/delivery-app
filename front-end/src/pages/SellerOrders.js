@@ -12,32 +12,8 @@ export default function SellerOrders() {
 
   const [sale, setSale] = useState([]);
 
-  // const mockedSellerOrder = [{
-  //   id: 0,
-  //   deliveryStatus: 'PRONTO',
-  //   orderDate: '08/04/21',
-  //   Price: 23.80,
-  //   Adress: 'Rua cê senta em tres',
-  // },
-  // {
-  //   id: 1,
-  //   deliveryStatus: 'PREPARANDO',
-  //   orderDate: '08/04/21',
-  //   Price: 14.20,
-  //   Adress: 'Rua cê senta em quatro',
-  // },
-  // {
-  //   id: 2,
-  //   deliveryStatus: 'ENTREGUE',
-  //   orderDate: '07/04/21',
-  //   Price: 28.46,
-  //   Adress: 'Rua cê senta em dois',
-  // },
-  // ];
-
   useEffect(() => {
     getSales(setSale);
-    // const sales = async () => (getSales());
   }, []);
 
   return (
