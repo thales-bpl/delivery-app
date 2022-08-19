@@ -121,7 +121,7 @@ export default function Navbar() {
     return sellerNavbar;
   }
 
-  if (userStored.role === 'admin') {
+  if (userStored.role === 'administrator') {
     return adminNavbar;
   }
 
