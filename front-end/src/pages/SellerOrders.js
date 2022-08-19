@@ -52,9 +52,9 @@ export default function SellerOrders() {
             data-testid={ `seller_orders__element-order-id-${order.id}` }
             to={ `/seller/orders/${order.id}` }
           >
-            <span>
+            <h2>
               {NumPedido}
-            </span>
+            </h2>
 
             <p
               data-testid={ `seller_orders__element-delivery-status-${order.id}` }
@@ -66,11 +66,11 @@ export default function SellerOrders() {
             >
               { order.orderDate }
             </p>
-            <span
+            <p
               data-testid={ `seller_orders__element-card-price-${order.id}` }
             >
               { order.Price.toFixed(2).replace('.', ',') }
-            </span>
+            </p>
             <p
               data-testid={ `seller_orders__element-card-address-${order.id}` }
             >
