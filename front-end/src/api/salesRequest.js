@@ -10,6 +10,12 @@ export const apiSellers = async () => {
   return data;
 };
 
+export const getSellerById = async (id) => {
+  const endpoint = `login/sellers/${id}`;
+  const { data } = await api.get(endpoint);
+  return data;
+};
+
 export const createSale = async (body, token) => {
   const config = {
     headers: {
