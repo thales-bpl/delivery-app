@@ -27,7 +27,7 @@ const fetchToken = async (dataTest) => {
         navigate('/seller/orders');
       }
       if (data.role === 'admin') {
-        navigate('/login');
+        navigate('/admin/manage');
       }
       if (!data.role) {
         navigate('/login');

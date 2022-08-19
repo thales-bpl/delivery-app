@@ -20,6 +20,8 @@ function App() {
         <Route exact path="/customer/orders/:id" element={ <Navbar /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/seller/orders/:id" element={ <div /> } />
+
+        <Route exact path="/admin/manage" element={ <Navbar /> } />
       </Routes>
     </BrowserRouter>
   );

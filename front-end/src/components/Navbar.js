@@ -81,7 +81,32 @@ export default function Navbar() {
         data-testid="customer_products__element-navbar-link-logout"
         onClick={ () => logout() }
       >
-        quit
+        Sair
+      </button>
+    </nav>
+  );
+
+  const adminNavbar = (
+    <nav>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-orders"
+      >
+        GERENCIAR USUÁRIOS
+      </button>
+
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-user-full-name"
+      >
+        { `${userStored.userName} Admin`}
+      </button>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-logout"
+        onClick={ () => logout() }
+      >
+        Sair
       </button>
     </nav>
   );
@@ -94,6 +119,10 @@ export default function Navbar() {
   // se usuário for vendedor, renderiza o navbar de vendedor
   if (userStored.role === 'seller') {
     return sellerNavbar;
+  }
+
+  if (userStored.role === 'admin') {
+    return adminNavbar;
   }
 
   // se não ..Loading..
