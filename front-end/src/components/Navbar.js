@@ -16,12 +16,14 @@ export default function Navbar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-products"
+        onClick={ () => navigate('/customer/products') }
       >
         products
       </button>
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-orders"
+        onClick={ () => navigate('/customer/orders/:id') }
       >
         orders
       </button>
@@ -29,6 +31,7 @@ export default function Navbar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-user-full-name"
+        // onClick={ () => navigate('/profile') implementar}
       >
         { userName }
       </button>
