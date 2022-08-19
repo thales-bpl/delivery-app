@@ -62,9 +62,17 @@ const postSaleProduct = async (salesProductBody, token) => {
   return { newSaleId };
 };
 
+const updateSale = async (status, id, token) => {
+  verifyToken(token);
+  await sale.update(status, { where: { id } });
+  const newData = await getById(id);
+  return newData;
+};
+
 module.exports = {
   getAll,
   getById,
   postSale,
   postSaleProduct,
+  updateSale,
 };
