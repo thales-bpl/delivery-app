@@ -19,7 +19,13 @@ const fetchToken = async (dataTest) => {
       setIsFailed(false);
       console.log(data);
       localStorage.setItem('user', JSON.stringify(data));
-      navigate('/customer/products');
+
+      if (data.role === 'customer') {
+        navigate('/customer/products');
+      }
+      if (data.role === 'seller') {
+        navigate('/seller/orders');
+      }
     })
     .catch(() => {
       setIsFailed(true);
