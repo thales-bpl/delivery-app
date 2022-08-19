@@ -27,7 +27,7 @@ export default function CustomerOrderCard({ id, status, saleDate, totalPrice }) 
             <div
               data-testid={ `customer_orders__element-card-price-${id}` }
             >
-              { totalPrice.replace('.', ',') }
+              { totalPrice }
             </div>
           </div>
         </div>

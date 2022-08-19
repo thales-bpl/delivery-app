@@ -11,9 +11,7 @@ export default function CustomerOrder() {
     async function getOrders() {
       try {
         const headers = { headers: { authorization: token } };
-        const request = await fetchAuth(`/sales/user/${id}`, headers);
-        setOrders(request);
-        console.log(orders);
+        await fetchAuth(`/sale/user/${id}`, headers, setOrders);
       } catch (error) {
         console.log(error);
       }
