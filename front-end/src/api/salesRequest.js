@@ -11,7 +11,7 @@ export const apiSellers = async () => {
 };
 
 export const getSellerById = async (id) => {
-  const endpoint = `login/sellers/${id}`;
+  const endpoint = `login/seller/${id}`;
   const { data } = await api.get(endpoint);
   return data;
 };
@@ -30,6 +30,17 @@ export const createSale = async (body, token) => {
 export const getSaleById = async (id) => {
   const endpoint = `/sale/${id}`;
   const { data } = await api.get(endpoint);
+  return data;
+};
+
+export const updateSale = async (id, body, token) => {
+  const config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  const endpoint = `/sale/${id}`;
+  const { data } = await api.put(endpoint, body, config);
   return data;
 };
 
