@@ -8,7 +8,7 @@ router
   .get('/', rescue(saleController.getAll))
   .get('/:saleId', rescue(saleController.getById))
   .get('/user/:userId', rescue(saleController.getByUserId))
-  .post('/', rescue(saleController.postSale));
+  .post('/', rescue(saleController.postSale))
   .put('/:saleId', rescue(saleController.updateSale));
 
 module.exports = router;
