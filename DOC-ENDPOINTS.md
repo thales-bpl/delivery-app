@@ -343,7 +343,7 @@
 
 <details>
   <summary>
-    <b><strong>GET BY ID</strong></b>
+    <b><strong>GET BY SALE ID</strong></b>
   </summary>
   GET(http://localhost:3001/sale/1)
 
@@ -388,6 +388,96 @@
         }
       ]
     }
+
+  </details>
+</details>
+
+---
+
+<details>
+  <summary>
+    <b><strong>GET BY USER ID</strong></b>
+  </summary>
+  GET(http://localhost:3001/sale/user/1)
+
+  <details>
+    <summary>
+      <b>Response</b>
+    </summary>
+    Code: 200<br>
+    Json:<br>
+
+    [
+      {
+        "id": 1,
+        "userId": 1,
+        "sellerId": 1,
+        "totalPrice": 10.55,
+        "deliveryAddress": "Rua do Teste",
+        "deliveryNumber": "101",
+        "status": "Pendente",
+        "saleDate": "2022-08-17T22:39:16.000Z",
+        "products": [
+          {
+            "id": 2,
+            "name": "Heineken 600ml",
+            "price": 7.5,
+            "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+            "salesProducts": {
+              "productId": 2,
+              "quantity": 2,
+              "saleId": 1
+            }
+          },
+          {
+            "id": 3,
+            "name": "Antarctica Pilsen 300ml",
+            "price": 2.49,
+            "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+            "salesProducts": {
+              "productId": 3,
+              "quantity": 3,
+              "saleId": 1
+            }
+          }
+        ]
+      },
+      (...),
+      {
+        "id": 3,
+        "userId": 1,
+        "sellerId": 1,
+        "totalPrice": 10.55,
+        "deliveryAddress": "Rua do Teste",
+        "deliveryNumber": "101",
+        "status": "Pendente",
+        "saleDate": "2022-08-17T22:52:15.000Z",
+        "products": [
+          {
+            "id": 2,
+            "name": "Heineken 600ml",
+            "price": 7.5,
+            "urlImage": "http://localhost:3001/images/heineken_600ml.jpg",
+            "salesProducts": {
+              "productId": 2,
+              "quantity": 2,
+              "saleId": 3
+            }
+          },
+          {
+            "id": 3,
+            "name": "Antarctica Pilsen 300ml",
+            "price": 2.49,
+            "urlImage": "http://localhost:3001/images/antarctica_pilsen_300ml.jpg",
+            "salesProducts": {
+              "productId": 3,
+              "quantity": 3,
+              "saleId": 3
+            }
+          }
+        ]
+      }
+    ]
 
   </details>
 </details>

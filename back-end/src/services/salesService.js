@@ -17,9 +17,7 @@ const formatSale = (saleById) => {
 
 const getAll = async () => { // TO-DO: OPTIMIZE JOINS
   const allSales = await sale.findAll({
-    include: [
-      { model: product, as: 'products' },
-    ],
+    include: { model: product, as: 'products' },
   });
   if (allSales.length > 1) {
     console.log(allSales);
@@ -33,19 +31,33 @@ const getAll = async () => { // TO-DO: OPTIMIZE JOINS
 
 const getById = async (id) => { // TO-DO: OPTIMIZE JOINS
   const saleById = await sale.findByPk(id, {
-    include: [
-      { model: product, as: 'products' },
-    ],
+    include: { model: product, as: 'products' },
   });
+
   const formatedSale = formatSale(saleById.dataValues);
   return formatedSale;
+};
+
+const getByUserId = async (userId) => { // TO-DO: OPTIMIZE JOINS
+  const saleByUser = await sale.findAll({
+    include: { model: product, as: 'products' },
+    where: { userId },
+  });
+
+  return saleByUser;
 };
 
 const postSale = async (saleBody) => {
   const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber } = saleBody;
 
   const { id } = await sale.create({
-    userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status: 'Pendente',
+    userId,
+    sellerId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    status: 'Pendente',
+    saleDate: new Date(),
   });
 
   return id;
@@ -72,6 +84,7 @@ const updateSale = async (status, id, token) => {
 module.exports = {
   getAll,
   getById,
+  getByUserId,
   postSale,
   postSaleProduct,
   updateSale,
