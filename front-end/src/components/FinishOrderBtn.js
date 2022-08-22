@@ -27,7 +27,7 @@ export default function FinishOrderBtn({ totalPrice, adressInput, adssNumberInpu
       purchasedProducts: salesProducts,
     };
     const { newSaleId } = await createSale(payload, token);
-    navigate(`/customer/orders/${newSaleId}`);
+    navigate(`/customer/order/${newSaleId}`);
   };
 
   return (

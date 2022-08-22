@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export default function CustomerOrderCard({ id, status, saleDate, totalPrice }) {
   return (
-    <Link to={ `/customer/orders/${id}` }>
+    <Link to={ `/customer/order/${id}` }>
       <div>
         <div
           data-testid={ `customer_orders__element-order-id-${id}` }
