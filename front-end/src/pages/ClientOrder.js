@@ -32,7 +32,7 @@ export default function CustomerOrder() {
             id={ order.id }
             status={ order.status }
             saleDate={ order.saleDate }
-            totalPrice={ order.totalPrice }
+            totalPrice={ order.totalPrice.toFixed(2).replace('.', ',') }
           />)) : <span>Você ainda não possui nenhum pedido</span> }
       </div>
     </div>
