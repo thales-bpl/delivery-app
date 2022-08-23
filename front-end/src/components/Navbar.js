@@ -24,6 +24,18 @@ export default function Navbar() {
       const { name, role } = getUser;
       setUserStored({ userName: name, role });
       console.log(`fez o login de ${role}`);
+
+      if (role === 'customer') {
+        navigate('/customer/products');
+      }
+
+      if (role === 'seller') {
+        navigate('/seller/orders');
+      }
+
+      if (role === 'administrator') {
+        navigate('/admin/manage');
+      }
     }
   }, []);
 
