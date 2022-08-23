@@ -13,6 +13,7 @@ export const getSales = (setSale) => {
     })
     .catch((err) => {
       console.log(err.message);
+      setSale([]);
     });
 };
 
