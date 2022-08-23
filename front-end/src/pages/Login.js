@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import fetchToken from '../api/fetchToken';
 import rockGlass from '../images/rockGlass.svg';
+import getLocalStorage from '../services/getLocalStorage';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -26,6 +27,11 @@ export default function Login() {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
+    }
+
+    const userIsLogged = getLocalStorage('user');
+    if (userIsLogged) {
+      navigate('/customer/products');
     }
   }, [email, password]);
 

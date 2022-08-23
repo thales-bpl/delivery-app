@@ -35,12 +35,14 @@ export default function Navbar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-products"
+        onClick={ () => navigate('/customer/products') }
       >
         products
       </button>
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-orders"
+        onClick={ () => navigate('/customer/orders') }
       >
         orders
       </button>
@@ -48,6 +50,7 @@ export default function Navbar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-user-full-name"
+        // onClick={ () => navigate('/profile') implementar}
       >
         { userStored.userName }
       </button>
@@ -121,6 +124,7 @@ export default function Navbar() {
     return sellerNavbar;
   }
 
+  // se usuário for adm, renderiza o navbar de adm
   if (userStored.role === 'administrator') {
     return adminNavbar;
   }
