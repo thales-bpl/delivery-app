@@ -17,9 +17,20 @@ const fetchToken = async (dataTest) => {
   await api.post(endpoint, body)
     .then(({ data }) => {
       setIsFailed(false);
-      console.log(data);
       localStorage.setItem('user', JSON.stringify(data));
-      navigate('/customer/products');
+
+      if (data.role === 'customer') {
+        navigate('/customer/products');
+      }
+      if (data.role === 'seller') {
+        navigate('/seller/orders');
+      }
+      if (data.role === 'administrator') {
+        navigate('/admin/manage');
+      }
+      if (!data.role) {
+        navigate('/login');
+      }
     })
     .catch(() => {
       setIsFailed(true);
