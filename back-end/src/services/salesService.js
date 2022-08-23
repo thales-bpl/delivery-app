@@ -1,12 +1,32 @@
 const { sale, product, salesProducts } = require('../database/models');
 const { verifyToken } = require('../utils/jwt');
 
+const formatSale = (saleById) => {
+  const formatedProducts = saleById.products.map((prod) => ({
+    id: prod.id,
+    name: prod.name,
+    price: prod.price,
+    urlImage: prod.urlImage,
+    quantity: prod.salesProducts.quantity,
+  }));
+
+  const { products: unformatedProd, ...saleInfo } = saleById;
+  const formatedSale = { ...saleInfo, products: formatedProducts };
+  return formatedSale;
+};
+
 const getAll = async () => { // TO-DO: OPTIMIZE JOINS
   const allSales = await sale.findAll({
     include: { model: product, as: 'products' },
   });
-
-  return allSales;
+  if (allSales.length > 1) {
+    console.log(allSales);
+    const formatedSales = allSales.map(({ dataValues }) => formatSale(dataValues));
+    return formatedSales;
+  }
+  
+  const formatedSale = formatSale(allSales[0].dataValues);
+  return formatedSale;
 };
 
 const getById = async (id) => { // TO-DO: OPTIMIZE JOINS
@@ -14,7 +34,8 @@ const getById = async (id) => { // TO-DO: OPTIMIZE JOINS
     include: { model: product, as: 'products' },
   });
 
-  return saleById;
+  const formatedSale = formatSale(saleById.dataValues);
+  return formatedSale;
 };
 
 const getByUserId = async (userId) => { // TO-DO: OPTIMIZE JOINS
@@ -53,10 +74,18 @@ const postSaleProduct = async (salesProductBody, token) => {
   return { newSaleId };
 };
 
+const updateSale = async (status, id, token) => {
+  verifyToken(token);
+  await sale.update(status, { where: { id } });
+  const newData = await getById(id);
+  return newData;
+};
+
 module.exports = {
   getAll,
   getById,
   getByUserId,
   postSale,
   postSaleProduct,
+  updateSale,
 };

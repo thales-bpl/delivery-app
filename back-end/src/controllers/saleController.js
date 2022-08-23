@@ -23,9 +23,18 @@ const postSale = async (req, res) => {
   return res.status(201).json(newSale);
 };
 
+const updateSale = async (req, res) => {
+  const { body } = req;
+  const { saleId } = req.params;
+  const { authorization } = req.headers;
+  const result = await saleService.updateSale(body, saleId, authorization);
+  return res.status(200).json(result);
+};
+
 module.exports = {
   getAll,
   getById,
   getByUserId,
   postSale,
+  updateSale,
 };

@@ -10,6 +10,12 @@ const getAllSellers = async (_req, res) => {
   return res.status(200).json(allSellers);
 };
 
+const getSellerById = async (req, res) => {
+  const { id } = req.params;
+  const seller = await userService.getSellerById(id);
+  return res.status(200).json(seller);
+};
+
 const verifyLogin = async (req, res) => {
   const { email, password } = req.body;
   const logged = await userService.verifyLogin(email, password);
@@ -25,6 +31,7 @@ const registerLogin = async (req, res) => {
 module.exports = {
   getAll,
   getAllSellers,
+  getSellerById,
   verifyLogin,
   registerLogin,
 };

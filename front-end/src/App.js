@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Checkout from './pages/checkout';
+import OrderDetails from './pages/OrderDetails';
 import SellerOrders from './pages/SellerOrders';
 import Navbar from './components/Navbar';
 
@@ -17,7 +18,7 @@ function App() {
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/customer/products" element={ <Products /> } />
         <Route exact path="customer/checkout" element={ <Checkout /> } />
-        <Route exact path="/customer/orders/:id" element={ <Navbar /> } />
+        <Route exact path="/customer/orders/:id" element={ <OrderDetails /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/seller/orders/:id" element={ <div /> } />
 
