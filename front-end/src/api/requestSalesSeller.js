@@ -6,9 +6,9 @@ const api = axios.create({
   baseURL: `http://localhost:${PORT}`,
 });
 
-const updateOrder = async (endpoint, header, setOrder) => {
-  await api.put(endpoint, header)
+const requestSalesSeller = async (endpoint, header, setOrder) => {
+  await api.get(endpoint, header)
     .then(({ data }) => setOrder(data));
 };
 
-export default updateOrder;
+export default requestSalesSeller;
