@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RemoveBtn from '../RemoveBtn';
 
 export default function OrderTableData({
   id,
@@ -40,7 +41,7 @@ export default function OrderTableData({
         <td
           data-testid={ `customer_checkout__element-order-table-remove-${id}` }
         >
-          <button type="button" onClick={ () => { removeProduct(); } }>Remover</button>
+          <button type="button" onClick={ () => { RemoveBtn(); } }>Remover</button>
         </td>
       ) }
     </tr>
