@@ -19,8 +19,7 @@ const getAll = async () => { // TO-DO: OPTIMIZE JOINS
   const allSales = await sale.findAll({
     include: { model: product, as: 'products' },
   });
-  if (allSales.length > 1) {
-    console.log(allSales);
+  if (allSales.length > 0) {
     const formatedSales = allSales.map(({ dataValues }) => formatSale(dataValues));
     return formatedSales;
   }

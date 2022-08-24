@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import Navbar from '../components/Navbar';
-import TableBody from '../components/Table/TableBody';
+import TableSellerOrder from '../components/Table/TableSellerOrder';
 import updateOrder from '../api/updateOrder';
 import requestSalesSeller from '../api/requestSalesSeller';
 
@@ -83,14 +83,14 @@ export default function SellerOrderDetails() {
             <th>Sub-total</th>
           </tr>
           { order.products && order.products.map((prod, index) => (
-            <TableBody
+            <TableSellerOrder
               key={ prod.name }
               id={ index }
               name={ prod.name }
-              quantity={ prod.SaleProduct.quantity }
+              quantity={ prod.quantity }
               price={ (prod.price)/* .replace('.', ',') */ }
               subtotal={
-                (prod.price * prod.SaleProduct.quantity)
+                (prod.price * prod.quantity)
                   .toFixed(2)
                   .replace('.', ',')
               }
@@ -99,7 +99,7 @@ export default function SellerOrderDetails() {
         </table>
         <div data-testid="seller_order_details__element-order-total-price">
           {
-            order.totalPrice && (order.totalPrice).replace('.', ',')
+            order.totalPrice && (order.totalPrice).toFixed(2).replace('.', ',')
           }
         </div>
       </div>
