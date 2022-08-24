@@ -20,9 +20,11 @@ export default function Navbar() {
       console.log('voltou para login');
     }
 
-    const { name, role } = getUser;
-    setUserStored({ userName: name, role });
-    console.log(`fez o login de ${role}`);
+    if (getUser) {
+      const { name, role } = getUser;
+      setUserStored({ userName: name, role });
+      console.log(`fez o login de ${role}`);
+    }
   }, []);
 
   const logout = () => {
