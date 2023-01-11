@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import MainContext from '../store/Context';
-import { createSale } from '../api/createSale';
+import { createSale } from '../api/salesRequest';
 import getLocalStorage from '../services/getLocalStorage';
 
 export default function FinishOrderBtn({ totalPrice, adressInput, adssNumberInput }) {

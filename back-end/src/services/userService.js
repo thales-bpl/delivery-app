@@ -13,6 +13,11 @@ const getAllSellers = async () => {
   return allUsers;
 };
 
+const getSellerById = async (id) => {
+  const seller = await user.findOne({ where: { role: 'seller', id } });
+  return seller;
+};
+
 const verifyLogin = async (email, password) => {
   const [currentUser] = await user.findAll({ where: { email } });
   const encryptedPass = encrypt(password);
@@ -41,6 +46,7 @@ const registerLogin = async (name, email, password) => {
 module.exports = {
   getAll,
   getAllSellers,
+  getSellerById,
   verifyLogin,
   registerLogin,
 };

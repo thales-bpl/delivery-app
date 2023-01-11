@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { apiSellers } from '../api/apiSellers';
+import { apiSellers } from '../api/salesRequest';
 import FinishOrderBtn from '../components/FinishOrderBtn';
 import MainContext from '../store/Context';
 import RemoveBtn from '../components/RemoveBtn';
